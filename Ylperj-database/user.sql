@@ -1,3 +1,5 @@
+Use YlperJ;
+
 Create Table Users (
     Id BIGINT unsigned NOT NULL AUTO_INCREMENT,
     Username varchar(50) NOT NULL,
@@ -7,4 +9,4 @@ Create Table Users (
 
     PRIMARY KEY(Id),
     FOREIGN KEY(GenderId) REFERENCES Genders(Id)
-)
+);

@@ -4,12 +4,18 @@ CONTAINER_NAME = ylperj-database
 CONTAINER_FLAGS = --rm
 VOLUME_NAME = ylper-volume
 
+build:
+	@echo "build"
 
-docker-image:
-	echo "Buduje image"
+unit-test:
+	@echo "unit-test"
 
-docker-clean:
-	echo "Clean"
+int-test:
+	@echo "int-test"
 
-docker-run: docker-image docker-clean
-    echo ''
+acc-test:
+	@echo "acc-test"
+
+test: unit-test int-test acc-test
+
+
