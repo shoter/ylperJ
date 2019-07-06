@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>400</x>
+      <y>310</y>
+      <w>20</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>450</x>
+      <y>300</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Build
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>560</x>
+      <y>300</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Run
+Unit Tests
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>670</x>
+      <y>300</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Integration
+Tests&gt;&gt;
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>670</x>
+      <y>350</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Deploy Test
+Db Docker</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>670</x>
+      <y>400</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Run Ef
+Migrations</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>670</x>
+      <y>450</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Insert SQL
+Data</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>670</x>
+      <y>500</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Run Integ.
+Tests
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>780</x>
+      <y>300</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Acceptance
+Tests&gt;&gt;
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>780</x>
+      <y>350</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Deploy Test
+Db Docker</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>780</x>
+      <y>400</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Run Ef
+Migrations</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>780</x>
+      <y>450</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Insert SQL
+Data</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>780</x>
+      <y>500</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Deploy App
+Docker</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>780</x>
+      <y>550</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Run 
+Acceptance
+Tests on App
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>890</x>
+      <y>300</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Deploy App&gt;&gt;
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>890</x>
+      <y>350</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Deploy Db
+Docker</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>890</x>
+      <y>400</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Deploy App
+Docker
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1000</x>
+      <y>310</y>
+      <w>20</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

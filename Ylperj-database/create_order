@@ -1,0 +1,10 @@
+gender.sql
+user.sql
+fuel_type.sql
+engine.sql
+car_company.sql
+car_luxury_category.sql
+car_model.sql
+car_feature.sql
+car.sql
+car_assigned_features.sql
