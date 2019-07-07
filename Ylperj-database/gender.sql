@@ -1,7 +1,7 @@
 USE YlperJ;
 
 CREATE TABLE Genders (
-    Id TINYINT unsigned NOT NULL PRIMARY KEY,
+    Id TINYINT  NOT NULL PRIMARY KEY,
     Name varchar(15) NOT NULL
 );
 

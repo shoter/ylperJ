@@ -1,8 +1,8 @@
 Use YlperJ;
 
 CREATE TABLE Engines (
-    Id INT UNSIGNED NOT NULL,
-    FuelTypeId TINYINT UNSIGNED NOT NULL,
+    Id INT  NOT NULL,
+    FuelTypeId TINYINT  NOT NULL,
     Power INT UNSIGNED NOT NULL,
     Name VARCHAR(50) NOT NULL,
 

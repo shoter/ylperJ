@@ -1,8 +1,8 @@
 USE YlperJ;
 
 CREATE TABLE CarAssignedFeatures (
-    CarId BIGINT UNSIGNED NOT NULL,
-    CarFeatureId INT UNSIGNED NOT NULL,
+    CarId BIGINT  NOT NULL,
+    CarFeatureId INT  NOT NULL,
 
     PRIMARY KEY(CarId, CarFeatureId),
     FOREIGN KEY(CarId) REFERENCES Cars(Id),

@@ -1,10 +1,10 @@
 Use YlperJ;
 
 Create Table CarModels (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    DesignerCompanyId INT UNSIGNED NOT NULL,
-    EngineId INT UNSIGNED NOT NULL,
-    LuxuryCategoryId TINYINT UNSIGNED NOT NULL,
+    Id INT  NOT NULL AUTO_INCREMENT,
+    DesignerCompanyId INT  NOT NULL,
+    EngineId INT  NOT NULL,
+    LuxuryCategoryId TINYINT  NOT NULL,
     Name VARCHAR(100) NOT NULL,
     FuelConsumption DECIMAL(5,2) NOT NULL,
 

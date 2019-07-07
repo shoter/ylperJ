@@ -1,7 +1,7 @@
 Use YlperJ;
 
 CREATE TABLE CarFeatures (
-    Id INT UNSIGNED NOT NULL,
+    Id INT  NOT NULL,
     Name VARCHAR(100) NOT NULL,
 
     PRIMARY KEY(Id)

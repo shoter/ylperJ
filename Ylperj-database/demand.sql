@@ -1,8 +1,8 @@
 USE YlperJ;
 
 CREATE TABLE Demands (
-    Id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    UserId BIGINT UNSIGNED NOT NULL,
+    Id BIGINT NOT NULL AUTO_INCREMENT,
+    UserId BIGINT NOT NULL,
     DesiredPickupLocation POINT NOT NULL,
     DesiredStartDateTime DATETIME NOT NULL,
     DesiredDropLocation POINT NOT NULL,
@@ -13,8 +13,8 @@ CREATE TABLE Demands (
 );
 
 CREATE TABLE DemandFeatures (
-    DemandId BIGINT UNSIGNED NOT NULL,
-    FeatureId INT UNSIGNED NOT NULL,
+    DemandId BIGINT NOT NULL,
+    FeatureId INT NOT NULL,
 
     Primary KEY(DemandId, FeatureId),
     FOREIGN KEY(DemandId) REFERENCES Demands(Id),

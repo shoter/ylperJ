@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="YlperJ-api" />
+        <module name="YlperJ-core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="YlperJ-api" target="1.5" />
+      <module name="YlperJ-core" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

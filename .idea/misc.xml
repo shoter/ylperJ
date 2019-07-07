@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/YlperJ-api/pom.xml" />
+        <option value="$PROJECT_DIR$/YlperJ-core/pom.xml" />
       </list>
     </option>
   </component>

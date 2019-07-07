@@ -1,7 +1,7 @@
 USE YlperJ;
 
 CREATE TABLE CarLocationHistories (
-    CarId BIGINT UNSIGNED NOT NULL,
+    CarId BIGINT  NOT NULL,
     DateTime DATETIME NOT NULL,
     Location POINT NOT NULL,
 
