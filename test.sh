@@ -7,7 +7,7 @@ docker run -d --rm -it -p 11000:3306 --name test -p 10000:1433 -v -d ylperj-data
 
 while ! mysqladmin ping -h 127.0.0.1 -P 11000 --silent; do
     echo 'Waiting for server connection'
-    sleep 1
+    sleep 3
 done
 
 cat Ylperj-database/create_order | while read file; do

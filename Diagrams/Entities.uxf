@@ -3,8 +3,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>80</y>
+      <x>530</x>
+      <y>50</y>
       <w>210</w>
       <h>140</h>
     </coordinates>
@@ -15,14 +15,15 @@ Username: string[50]
 GenderId: tinyInt
 Name : string[200]
 Age: tinyInt
+CreateDate: DateTime
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>80</y>
+      <x>800</x>
+      <y>50</y>
       <w>130</w>
       <h>70</h>
     </coordinates>
@@ -36,8 +37,8 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>100</y>
+      <x>730</x>
+      <y>70</y>
       <w>90</w>
       <h>40</h>
     </coordinates>
@@ -48,8 +49,8 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>960</x>
-      <y>550</y>
+      <x>1130</x>
+      <y>590</y>
       <w>140</w>
       <h>60</h>
     </coordinates>
@@ -62,23 +63,24 @@ Name: string[100]</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>560</y>
+      <x>470</x>
+      <y>530</y>
       <w>280</w>
-      <h>80</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>Car
 --
 Id: uBigInt
-CarModelId: Int
+CarModelId: uInt
+CreateDate: DateTime
 CarFeatures: CarAssignedFeature[]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
-      <y>550</y>
+      <x>840</x>
+      <y>560</y>
       <w>240</w>
       <h>130</h>
     </coordinates>
@@ -87,7 +89,7 @@ CarFeatures: CarAssignedFeature[]</panel_attributes>
 Id: uint
 DesignerCompanyId: uint
 EngineId: uInt
-LuxuryCategoryId: tinyInt
+LuxuryCategoryId: utinyInt
 Name: string[100]
 FuelConsumption: Decimal(5,2)
 
@@ -97,8 +99,8 @@ FuelConsumption: Decimal(5,2)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>570</y>
+      <x>1070</x>
+      <y>610</y>
       <w>80</w>
       <h>40</h>
     </coordinates>
@@ -109,8 +111,8 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>560</y>
+      <x>740</x>
+      <y>570</y>
       <w>120</w>
       <h>50</h>
     </coordinates>
@@ -122,8 +124,8 @@ m1=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>960</x>
-      <y>620</y>
+      <x>1130</x>
+      <y>660</y>
       <w>140</w>
       <h>70</h>
     </coordinates>
@@ -136,47 +138,48 @@ Name: string[50]</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>610</y>
+      <x>1070</x>
+      <y>660</y>
       <w>80</w>
-      <h>80</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
 </panel_attributes>
-    <additional_attributes>60.0;50.0;30.0;50.0;30.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>60.0;40.0;30.0;40.0;30.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>700</x>
-      <y>780</y>
+      <x>900</x>
+      <y>430</y>
       <w>140</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>CarFeature
 --
 Id: uint
-Name: string[100]</panel_attributes>
+Name: string[100]
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>610</y>
-      <w>150</w>
-      <h>240</h>
+      <x>740</x>
+      <y>460</y>
+      <w>180</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes>
-    <additional_attributes>130.0;210.0;40.0;210.0;40.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>160.0;10.0;40.0;10.0;40.0;80.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>960</x>
-      <y>460</y>
+      <x>1130</x>
+      <y>500</y>
       <w>140</w>
       <h>80</h>
     </coordinates>
@@ -190,29 +193,29 @@ Power: uInt</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>490</y>
+      <x>1070</x>
+      <y>530</y>
       <w>80</w>
-      <h>100</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
 </panel_attributes>
-    <additional_attributes>60.0;10.0;30.0;10.0;30.0;80.0;10.0;80.0</additional_attributes>
+    <additional_attributes>60.0;10.0;30.0;10.0;30.0;50.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>230</x>
-      <y>290</y>
+      <x>400</x>
+      <y>260</y>
       <w>200</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>Booking
 --
 Id: uBigInt
-UserId: BigInt
-CarId: BigInt
+UserId: uBigInt
+CarId: uBigInt
 StartDateTime: DateTime
 PickupPosition: Point
 EndDateTime: DateTime?
@@ -223,28 +226,28 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>290</y>
+      <x>660</x>
+      <y>260</y>
       <w>280</w>
       <h>140</h>
     </coordinates>
-    <panel_attributes>Schedule
+    <panel_attributes>Demand
 --
 Id: uBigInt
-UserId: BigInt
-CarId: BigInt
+UserId: uBigInt
 DesiredPickupLocation: Point
 DesiredStartDateTime: DateTime
 DesiredDropOffLocation: Point
 EarliestEndDateTime: DateTime
+DesiredCarFeatures: CarFeature[]
 bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>420</y>
+      <x>540</x>
+      <y>390</y>
       <w>30</w>
       <h>160</h>
     </coordinates>
@@ -256,8 +259,8 @@ m1=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>420</y>
+      <x>680</x>
+      <y>390</y>
       <w>30</w>
       <h>160</h>
     </coordinates>
@@ -269,8 +272,8 @@ m1=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>210</y>
+      <x>560</x>
+      <y>180</y>
       <w>30</w>
       <h>100</h>
     </coordinates>
@@ -282,8 +285,8 @@ m1=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>530</x>
-      <y>210</y>
+      <x>700</x>
+      <y>180</y>
       <w>30</w>
       <h>100</h>
     </coordinates>
@@ -295,8 +298,8 @@ m1=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
-      <y>570</y>
+      <x>220</x>
+      <y>540</y>
       <w>170</w>
       <h>80</h>
     </coordinates>
@@ -310,8 +313,8 @@ Location: Point</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>210</x>
-      <y>590</y>
+      <x>380</x>
+      <y>560</y>
       <w>110</w>
       <h>40</h>
     </coordinates>
@@ -322,8 +325,8 @@ m1=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1150</x>
-      <y>470</y>
+      <x>1310</x>
+      <y>510</y>
       <w>140</w>
       <h>60</h>
     </coordinates>
@@ -336,14 +339,26 @@ Name: String[40]</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1090</x>
-      <y>480</y>
-      <w>80</w>
+      <x>1260</x>
+      <y>520</y>
+      <w>70</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
 </panel_attributes>
-    <additional_attributes>60.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>50.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>930</x>
+      <y>320</y>
+      <w>100</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes>
+    <additional_attributes>60.0;110.0;60.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

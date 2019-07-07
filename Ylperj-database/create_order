@@ -8,3 +8,7 @@ car_model.sql
 car_feature.sql
 car.sql
 car_assigned_features.sql
+generate_cars.sql
+booking.sql
+demand.sql
+car_location_history.sql

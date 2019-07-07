@@ -6,6 +6,7 @@ Create Table Users (
     Name varchar(50) NOT NULL,
     GenderId tinyint unsigned NOT NULL,
     Age tinyint unsigned NOT NULL,
+    CreateDate DATETIME,
 
     PRIMARY KEY(Id),
     FOREIGN KEY(GenderId) REFERENCES Genders(Id)
