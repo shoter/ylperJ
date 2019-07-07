@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserServiceIntegrationTest extends IntegrationTest {
 
@@ -40,5 +40,12 @@ public class UserServiceIntegrationTest extends IntegrationTest {
         assertEquals(correctUser.getBirthDay(), addedUser.getBirthDay());
         assertEquals(correctUser.getGender().getId(), addedUser.getGender().getId());
         assertEquals(correctUser.getCreateDate(), addedUser.getCreateDate());
+    }
+
+    @Test
+    public void getUser_thatDoesNotExist_shouldReturnNull()
+    {
+        User user = userService.getUser(-9999999);
+        assertNull(user);
     }
 }

@@ -54,4 +54,22 @@ public class UserServiceImpl extends ServiceBase implements UserService {
 
         return user[0];
     }
+
+    public MethodResult canRemoveUser(User user) {
+
+        //TODO: Check if has any bookings/demands - if yes then we cannot remove him.
+
+        return new MethodResult();
+    }
+
+    public void removeUser(final User user) {
+        new SessionTransactionOperation(session)
+        {
+            @Override
+            protected void Execute() {
+                this.session.delete(user);
+            }
+        }.Run();
+
+    }
 }
