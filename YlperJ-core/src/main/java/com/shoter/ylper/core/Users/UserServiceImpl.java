@@ -3,23 +3,16 @@ package com.shoter.ylper.core.Users;
 import com.shoter.ylper.core.Database.SessionOperation;
 import com.shoter.ylper.core.Database.SessionTransactionOperation;
 import com.shoter.ylper.core.Results.MethodResult;
+import com.shoter.ylper.core.ServiceBase;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Set;
 
-public class UserServiceImpl implements UserService {
-    private Session session;
-    private Validator validator;
+public class UserServiceImpl extends ServiceBase implements UserService {
 
     public UserServiceImpl(Session session) {
-        this.session =session;
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
+        super(session);
     }
 
     public MethodResult canAddUser(final User user)
