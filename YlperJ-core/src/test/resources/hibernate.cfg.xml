@@ -32,6 +32,7 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="com.shoter.ylper.core.Users.Gender"/>
+        <mapping class="com.shoter.ylper.core.Users.User"/>
 
     </session-factory>
 

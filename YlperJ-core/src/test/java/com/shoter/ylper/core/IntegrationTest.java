@@ -1,16 +1,18 @@
 package com.shoter.ylper.core;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 public class IntegrationTest {
     protected SessionFactory sessionFactory;
+    protected Session session;
 
-    @Before
+    @BeforeEach
     public void beforeEachTest() {
         // A SessionFactory is set up once for an application!
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -18,6 +20,7 @@ public class IntegrationTest {
                 .build();
         try {
             sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+            session = sessionFactory.openSession();
         }
         catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
@@ -26,8 +29,11 @@ public class IntegrationTest {
         }
     }
 
-    @After
+    @AfterEach
     public void afterEachTest() {
+        if(session != null) {
+            session.close();
+        }
         if ( sessionFactory != null ) {
             sessionFactory.close();
         }

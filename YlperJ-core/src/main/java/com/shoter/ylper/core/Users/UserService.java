@@ -1,12 +1,9 @@
 package com.shoter.ylper.core.Users;
 
-import org.hibernate.SessionFactory;
+import com.shoter.ylper.core.Results.MethodResult;
 
-public class UserService {
-    private SessionFactory sessionFactory;
-
-    public UserService(SessionFactory sessionFactory)
-    {
-        this.sessionFactory = sessionFactory;
-    }
+public interface UserService {
+    MethodResult canAddUser(User user);
+    void addUser(User user);
+    User getUser(long userId);
 }

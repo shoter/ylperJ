@@ -46,8 +46,8 @@ INSERT INTO CarAssignedFeatures(CarId, CarFeatureId) VALUES
 (@last_id, 1), -- radio
 (@last_id, 2); -- CB
 
-INSERT INTO Users(Username, Name, GenderId, Age, CreateDate)
-VALUES ('test', 'test account', 3, 22, '2019-06-30');
+INSERT INTO Users(Username, Name, GenderId, Birthday, CreateDate)
+VALUES ('test', 'test account', 3, '1990-02-04', '2019-06-30');
 
 SET @user_id = LAST_INSERT_ID();
 

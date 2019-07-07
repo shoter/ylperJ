@@ -9,11 +9,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Genders")
 public class Gender {
+    @Id
+    @Column(name="Id", nullable = false, updatable = false)
     private byte id;
+    @Column(name = "Name", nullable = false, updatable = false)
     private String name;
 
-    @Id
-    @Column(name="Id")
+
     public byte getId() {
         return id;
     }
@@ -22,7 +24,6 @@ public class Gender {
         this.id = id;
     }
 
-    @Column(name="Name")
     public String getName() {
         return name;
     }

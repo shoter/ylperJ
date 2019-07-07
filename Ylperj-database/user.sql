@@ -5,7 +5,7 @@ Create Table Users (
     Username varchar(50) NOT NULL,
     Name varchar(50) NOT NULL,
     GenderId tinyint  NOT NULL,
-    Age tinyint unsigned NOT NULL,
+    Birthday DATETIME NOT NULL,
     CreateDate DATETIME,
 
     PRIMARY KEY(Id),
