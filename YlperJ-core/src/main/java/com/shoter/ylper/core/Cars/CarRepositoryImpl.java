@@ -25,4 +25,8 @@ public class CarRepositoryImpl extends RepositoryBase implements CarRepository {
     public Car getCar(long carId) {
         return session.get(Car.class, carId);
     }
+
+    public void remove(long carId) {
+         session.remove(session.load(Car.class, carId));
+    }
 }

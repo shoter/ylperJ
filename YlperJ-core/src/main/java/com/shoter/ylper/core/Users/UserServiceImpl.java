@@ -28,11 +28,11 @@ public class UserServiceImpl extends ServiceBase implements UserService {
 
         if(user.getUsername() != null && StringHelper.isStringTrimmed(user.getUsername()) == false)
         {
-            result.addError(UserErrors.usernameNotTrimmed)
+            result.addError(UserErrors.usernameNotTrimmed);
         }
         else if(userRepository.userExist(user.getUsername()))
         {
-            result.addError(UserErrors.userWithUsernameExist)
+            result.addError(UserErrors.userWithUsernameExist);
         }
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);

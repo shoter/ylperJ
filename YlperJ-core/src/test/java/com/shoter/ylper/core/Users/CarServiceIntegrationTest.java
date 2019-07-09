@@ -48,7 +48,7 @@ public class CarServiceIntegrationTest extends IntegrationTest {
 
         carService.addCar(car);
         long carId = car.getId();
-        carService.removeCar(session.load(Car.class, carId));
+        carService.removeCar(carId);
 
         assertNull(carService.getCar(carId));
     }
@@ -76,6 +76,12 @@ public class CarServiceIntegrationTest extends IntegrationTest {
 
         carService.addCar(car);
 
-        assertFalse(carService.canRemoveCar(car).isSuccess());
+        assertTrue(carService.canRemoveCar(car.getId()).hasError(CarErrors.cannotRemoveBecauseBookings));
+    }
+
+    @Test
+    public void canRemoveCar_shouldReturnFalse_ifThereIsNoCar()
+    {
+
     }
 }

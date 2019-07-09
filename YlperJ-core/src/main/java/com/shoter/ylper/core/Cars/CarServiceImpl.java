@@ -27,23 +27,23 @@ public class CarServiceImpl extends ServiceBase implements CarService {
         carRepository.add(car);
     }
 
-    public MethodResult canRemoveCar(Car car) {
-        if(carRepository.exist(car.getId()) == false)
+    public MethodResult canRemoveCar(final long carId) {
+        if(carRepository.exist(carId) == false)
         {
-            return new MethodResult("Car does not exist!");
+            return new MethodResult(CarErrors.carNotExist);
         }
 
         MethodResult result = new MethodResult();
 
-        if(carRepository.getBookingsCountForCar(car.getId()) > 0)
+        if(carRepository.getBookingsCountForCar(carId) > 0)
         {
-            result.addError("You cannot remove a car that has bookings!");
+            result.addError(CarErrors.cannotRemoveBecauseBookings);
         }
         return new MethodResult();
     }
 
-    public void removeCar(final Car car) {
-        carRepository.remove(car);
+    public void removeCar(final long carId) {
+        carRepository.remove(carId);
     }
 
     public Car getCar(final long id) {

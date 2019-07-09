@@ -7,8 +7,8 @@ public interface CarService  {
     MethodResult canAddCar(Car car);
     void addCar(Car car);
 
-    MethodResult canRemoveCar(Car car);
-    void removeCar(Car car);
+    MethodResult canRemoveCar(long carId);
+    void removeCar(long carId);
 
     Car getCar(long id);
 
