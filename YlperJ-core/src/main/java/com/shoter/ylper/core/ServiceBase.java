@@ -7,12 +7,10 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 public class ServiceBase {
-    protected Session session;
     protected Validator validator;
 
-    protected ServiceBase(Session session)
+    protected ServiceBase()
     {
-        this.session = session;
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }

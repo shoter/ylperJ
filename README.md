@@ -36,4 +36,15 @@ in the way that enables us to run in on any platform - console, gui, web api etc
 That's why i create Ylper-core project which is front-end independent library for my project.
 It added some more difficulty for me as I never used maven and multi modules projects but this is better design choice.
 
+## Challenges
+
+I also encountered some challenges which increased time of me battling with frameworks or other things.
+
+
+### I could not insert Point type into MySQL Database.
+
+I created [Stack Overflow Question](https://stackoverflow.com/questions/56927248/cannot-insert-point-into-mysql-database-using-hibernate-spatial) about my problem.
+It turned out that something was wrong with serialization and I spent some time to figure out what I am doing wrong.
+
+
 

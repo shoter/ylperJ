@@ -7,10 +7,13 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
 
 public class IntegrationTest {
     protected SessionFactory sessionFactory;
     protected Session session;
+    protected GeometryFactory geometryFactory;
 
     @BeforeEach
     public void beforeEachTest() {
@@ -21,6 +24,7 @@ public class IntegrationTest {
         try {
             sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
             session = sessionFactory.openSession();
+            geometryFactory = new GeometryFactory(new PrecisionModel(), 0);
         }
         catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory

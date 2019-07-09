@@ -2,8 +2,8 @@ package com.shoter.ylper.core.Bookings;
 
 import com.shoter.ylper.core.Cars.Car;
 import com.shoter.ylper.core.Users.User;
-import com.vividsolutions.jts.geom.Point;
 import org.hibernate.annotations.Type;
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

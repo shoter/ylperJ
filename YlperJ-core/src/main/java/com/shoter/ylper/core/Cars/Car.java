@@ -1,5 +1,7 @@
 package com.shoter.ylper.core.Cars;
 
+import com.shoter.ylper.core.Bookings.Booking;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -22,7 +24,7 @@ public class Car {
     @NotNull
     private Date createDate;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
             name="CarAssignedFeatures",
             joinColumns = @JoinColumn( name = "CarId"),
@@ -33,6 +35,10 @@ public class Car {
     @OneToMany
     @JoinColumn(name = "CarId")
     private Set<CarLocationHistory> carLocationHistories;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CarId")
+    private Set<Booking> carBookings;
 
     public long getId() {
         return id;
@@ -72,5 +78,13 @@ public class Car {
 
     public void setCarLocationHistories(Set<CarLocationHistory> carLocationHistories) {
         this.carLocationHistories = carLocationHistories;
+    }
+
+    public Set<Booking> getCarBookings() {
+        return carBookings;
+    }
+
+    public void setCarBookings(Set<Booking> carBookings) {
+        this.carBookings = carBookings;
     }
 }

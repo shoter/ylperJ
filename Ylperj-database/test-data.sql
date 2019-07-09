@@ -1,3 +1,5 @@
+USE YlperJ;
+
 INSERT INTO Cars(CarModelId, CreateDate)
 VALUES(1, '2019-06-30'); -- cheap skoda diesel
 

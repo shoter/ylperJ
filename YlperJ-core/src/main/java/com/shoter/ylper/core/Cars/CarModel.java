@@ -36,4 +36,52 @@ public class CarModel {
     @Column(name = "FuelConsumption", precision = 5, scale = 2)
     @NotNull
     private BigDecimal fuelConsumption;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public CarCompany getDesignerCompany() {
+        return designerCompany;
+    }
+
+    public void setDesignerCompany(CarCompany designerCompany) {
+        this.designerCompany = designerCompany;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    public CarLuxuryCategory getLuxuryCategory() {
+        return luxuryCategory;
+    }
+
+    public void setLuxuryCategory(CarLuxuryCategory luxuryCategory) {
+        this.luxuryCategory = luxuryCategory;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getFuelConsumption() {
+        return fuelConsumption;
+    }
+
+    public void setFuelConsumption(BigDecimal fuelConsumption) {
+        this.fuelConsumption = fuelConsumption;
+    }
 }

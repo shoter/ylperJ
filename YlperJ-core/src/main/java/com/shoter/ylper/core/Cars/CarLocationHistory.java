@@ -1,7 +1,8 @@
 package com.shoter.ylper.core.Cars;
 
 
-import com.vividsolutions.jts.geom.Point;
+
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

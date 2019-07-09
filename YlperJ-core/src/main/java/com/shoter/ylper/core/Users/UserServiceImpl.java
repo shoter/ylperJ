@@ -11,8 +11,10 @@ import java.util.Set;
 
 public class UserServiceImpl extends ServiceBase implements UserService {
 
-    public UserServiceImpl(Session session) {
-        super(session);
+    private UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public MethodResult canAddUser(final User user)
@@ -30,29 +32,12 @@ public class UserServiceImpl extends ServiceBase implements UserService {
     }
 
     public void addUser(final User user) {
-        new SessionTransactionOperation(session)
-        {
-            @Override
-            protected void Execute() {
-                this.session.save(user);
-            }
-        }.Run();
+        userRepository.add(user);
     }
 
     public User getUser(final long userId)
     {
-        final User[] user = new User[1]; // is this anti pattern?
-        // Java designers should make some kind of code sugar to make it more pretty if it is not anti-pattern
-        // there are lambdas - I did not yet used lambdas in the past so to not make silly errors I will stay with annonymous classes.
-        new SessionOperation(session)
-        {
-            @Override
-            protected void Execute() {
-                user[0] = (User) this.session.get(User.class, userId);
-            }
-        }.Run();
-
-        return user[0];
+        return userRepository.getUser(userId);
     }
 
     public MethodResult canRemoveUser(User user) {
@@ -63,13 +48,6 @@ public class UserServiceImpl extends ServiceBase implements UserService {
     }
 
     public void removeUser(final User user) {
-        new SessionTransactionOperation(session)
-        {
-            @Override
-            protected void Execute() {
-                this.session.delete(user);
-            }
-        }.Run();
-
+         userRepository.remove(user);
     }
 }
