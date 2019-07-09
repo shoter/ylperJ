@@ -35,7 +35,10 @@ public class UserServiceTest{
         this.correctUser.setGender(someGender);
 
         this.userRepositoryMock = mock(UserRepository.class);
+
         when(this.userRepositoryMock.userExist(anyString())).thenReturn(false);
+        when(this.userRepositoryMock.hasAnyBookings(anyLong())).thenReturn(false);
+        when(this.userRepositoryMock.hasAnyDemands(anyLong())).thenReturn(false);
 
         this.userService = new UserServiceImpl(this.userRepositoryMock);
 
@@ -52,7 +55,7 @@ public class UserServiceTest{
     {
         when(userRepositoryMock.userExist(anyString())).thenReturn(true);
         MethodResult result = userService.canAddUser(correctUser);
-        assertFalse(result.isSuccess());
+        assertTrue(result.hasError(UserErrors.userWithUsernameExist));
     }
 
     @Test
@@ -60,7 +63,7 @@ public class UserServiceTest{
     {
         this.correctUser.setGender(null);
         MethodResult result = userService.canAddUser(correctUser);
-        assertFalse(result.isSuccess());
+        assertTrue(result.hasError(UserErrors.incorrectGender));
     }
 
     @Test
@@ -68,7 +71,7 @@ public class UserServiceTest{
     {
         this.correctUser.getGender().setId((byte)90);
         MethodResult result = userService.canAddUser(correctUser);
-        assertFalse(result.isSuccess());
+        assertTrue(result.hasError(UserErrors.incorrectGender));
     }
 
     @Test
@@ -134,4 +137,7 @@ public class UserServiceTest{
         MethodResult result = userService.canAddUser(correctUser);
         assertFalse(result.isSuccess());
     }
+
+
+
 }

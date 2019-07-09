@@ -23,16 +23,16 @@ public class UserServiceImpl extends ServiceBase implements UserService {
         MethodResult result = new MethodResult();
         if(user.getGender() != null && Genders.isCorrectGender(user.getGender().getId()) == false)
         {
-            result.addError("Incorrect gender");
+            result.addError(UserErrors.incorrectGender);
         }
 
         if(user.getUsername() != null && StringHelper.isStringTrimmed(user.getUsername()) == false)
         {
-            result.addError("Username cannot have spaces at the beginning or end.");
+            result.addError(UserErrors.usernameNotTrimmed)
         }
         else if(userRepository.userExist(user.getUsername()))
         {
-            result.addError("User with this username already exists!");
+            result.addError(UserErrors.userWithUsernameExist)
         }
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);
@@ -52,9 +52,22 @@ public class UserServiceImpl extends ServiceBase implements UserService {
 
     public MethodResult canRemoveUser(User user) {
 
-        //TODO: Check if has any bookings/demands - if yes then we cannot remove him.
+        if(userRepository.getUser(user.getId()) == null)
+        {
+            return new MethodResult(UserErrors.userNotExist);
+        }
 
-        return new MethodResult();
+        MethodResult result = new MethodResult();
+        if(userRepository.hasAnyBookings(user.getId()))
+        {
+            return new MethodResult(UserErrors.cannotRemoveBecauseOfBookings);
+        }
+        if(userRepository.hasAnyDemands(user.getId()))
+        {
+            return new MethodResult(UserErrors.cannotRemoveBecauseOfDemands);
+        }
+
+        return result;
     }
 
     public void removeUser(final User user) {

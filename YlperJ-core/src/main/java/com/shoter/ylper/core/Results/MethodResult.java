@@ -36,6 +36,17 @@ public class MethodResult {
         return this;
     }
 
+    public boolean hasError(String error)
+    {
+        for(String e : errors)
+        {
+            if(e.equals(error))
+                return true;
+        }
+
+        return false;
+    }
+
     public boolean isSuccess()
     {
         return this.errors.size() == 0;

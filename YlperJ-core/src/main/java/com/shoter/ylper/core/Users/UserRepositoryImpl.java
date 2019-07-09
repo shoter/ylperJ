@@ -14,12 +14,23 @@ public class UserRepositoryImpl extends RepositoryBase<User> implements  UserRep
         return session.get(User.class, userId);
     }
 
-    public boolean hasAnyDemandsOrBookings(long userId) {
-        return false;
+    public boolean hasAnyBookings(long userId) {
+       Query query = session.createQuery("select 1 from Booking where Booking.userId=:userId") ;
+       query.setParameter("userId", userId);
+
+       return query.uniqueResult() != null;
     }
 
+    public boolean hasAnyDemands(long userId) {
+        Query query = session.createQuery("select 1 from Demand where Demand.userId=:userId") ;
+        query.setParameter("userId", userId);
+
+        return query.uniqueResult() != null;
+    }
+
+
     public boolean userExist(String username) {
-        Query query = session.createQuery("select 1 from Car where Car.username=:username");
+        Query query = session.createQuery("select 1 from User where User.username=:username");
         query.setParameter("username", username);
 
         return query.uniqueResult() != null;
