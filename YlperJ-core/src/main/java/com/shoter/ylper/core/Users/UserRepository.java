@@ -6,4 +6,6 @@ public interface UserRepository extends Repository<User> {
     User getUser(long userId);
 
     boolean hasAnyDemandsOrBookings(long userId);
+
+    boolean userExist(String username);
 }

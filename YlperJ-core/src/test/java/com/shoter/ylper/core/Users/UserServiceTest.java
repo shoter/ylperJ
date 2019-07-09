@@ -2,6 +2,7 @@ package com.shoter.ylper.core.Users;
 
 import com.mysql.cj.util.StringUtils;
 import com.shoter.ylper.core.IntegrationTest;
+import com.shoter.ylper.core.Results.MethodResult;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.internal.util.StringHelper;
@@ -34,6 +35,8 @@ public class UserServiceTest{
         this.correctUser.setGender(someGender);
 
         this.userRepositoryMock = mock(UserRepository.class);
+        when(this.userRepositoryMock.userExist(anyString())).thenReturn(false);
+
         this.userService = new UserServiceImpl(this.userRepositoryMock);
 
     }
@@ -41,76 +44,94 @@ public class UserServiceTest{
     @Test
     public void canAddUser_returnTrue_whenCorrectUser()
     {
-        assertTrue(userService.canAddUser(correctUser).isSuccess());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertTrue(result.isSuccess());
+    }
+
+    @Test void canAddUser_returnFalse_whenUsernameAlreadyExist()
+    {
+        when(userRepositoryMock.userExist(anyString())).thenReturn(true);
+        MethodResult result = userService.canAddUser(correctUser);
+        assertFalse(result.isSuccess());
     }
 
     @Test
     public void canAddUser_returnFalse_whenGenderIsNull()
     {
         this.correctUser.setGender(null);
-        assertFalse(userService.canAddUser(correctUser).isSuccess());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertFalse(result.isSuccess());
     }
 
     @Test
     public void canAddUser_returnFalse_whenGenderIsOutOfBounds()
     {
         this.correctUser.getGender().setId((byte)90);
-        assertFalse(userService.canAddUser(correctUser).isSuccess());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertFalse(result.isSuccess());
     }
 
     @Test
     public void canAddUser_returnFalse_whenNameIsNull()
     {
         this.correctUser.setName(null);
-        assertFalse(userService.canAddUser(correctUser).isSuccess());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertFalse(result.isSuccess());
     }
 
     @Test
     public void canAddUser_returnFalse_whenUsernameIsNull()
     {
         this.correctUser.setUsername(null);
-        assertFalse(userService.canAddUser(correctUser).isSuccess());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertFalse(result.isSuccess());
     }
 
     @Test
     public void canAddUser_returnFalse_whenNameIsTooLong()
     {
         this.correctUser.setName(StringHelper.repeat(".", 201));
-        assertFalse(userService.canAddUser(correctUser).isSuccess());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertFalse(result.isSuccess());
     }
 
     @Test
     public void canAddUser_returnTrue_whenNameHasCorrectLength()
     {
         this.correctUser.setName(StringHelper.repeat(".", 200));
-        assertTrue(userService.canAddUser(correctUser).isSuccess());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertTrue(result.isSuccess());
     }
 
     @Test
     public void canAddUser_returnFalse_whenUsernameIsTooLong()
     {
         this.correctUser.setUsername(StringHelper.repeat(".", 51));
-        assertFalse(userService.canAddUser(correctUser).isSuccess());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertFalse(result.isSuccess());
     }
 
     @Test
     public void canAddUser_returnTrue_whenUsernameHasCorrectLength()
     {
         this.correctUser.setUsername(StringHelper.repeat(".", 50));
-        assertTrue(userService.canAddUser(correctUser).isSuccess());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertTrue(result.isSuccess());
     }
 
     @Test
     public void canAddUser_returnFalse_whenCreateDateIsNull()
     {
         this.correctUser.setCreateDate(null);
-        assertFalse(userService.canAddUser(correctUser).isSuccess());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertFalse(result.isSuccess());
     }
 
     @Test
     public void canAddUser_returnFalse_whenBirthdayIsNull()
     {
         this.correctUser.setBirthDay(null);
-        assertFalse(userService.canAddUser(correctUser).isSuccess());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertFalse(result.isSuccess());
     }
 }

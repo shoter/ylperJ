@@ -1,5 +1,6 @@
 package com.shoter.ylper.core.Users;
 
+import com.shoter.ylper.core.Common.StringHelper;
 import com.shoter.ylper.core.Database.SessionOperation;
 import com.shoter.ylper.core.Database.SessionTransactionOperation;
 import com.shoter.ylper.core.Results.MethodResult;
@@ -23,6 +24,15 @@ public class UserServiceImpl extends ServiceBase implements UserService {
         if(user.getGender() != null && Genders.isCorrectGender(user.getGender().getId()) == false)
         {
             result.addError("Incorrect gender");
+        }
+
+        if(user.getUsername() != null && StringHelper.isStringTrimmed(user.getUsername()) == false)
+        {
+            result.addError("Username cannot have spaces at the beginning or end.");
+        }
+        else if(userRepository.userExist(user.getUsername()))
+        {
+            result.addError("User with this username already exists!");
         }
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);

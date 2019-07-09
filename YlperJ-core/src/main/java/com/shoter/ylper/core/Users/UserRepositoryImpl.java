@@ -3,6 +3,7 @@ package com.shoter.ylper.core.Users;
 import com.shoter.ylper.core.RepositoryBase;
 import com.sun.jmx.mbeanserver.Repository;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public class UserRepositoryImpl extends RepositoryBase<User> implements  UserRepository {
     public UserRepositoryImpl(Session session) {
@@ -15,5 +16,12 @@ public class UserRepositoryImpl extends RepositoryBase<User> implements  UserRep
 
     public boolean hasAnyDemandsOrBookings(long userId) {
         return false;
+    }
+
+    public boolean userExist(String username) {
+        Query query = session.createQuery("select 1 from Car where Car.username=:username");
+        query.setParameter("username", username);
+
+        return query.uniqueResult() != null;
     }
 }
