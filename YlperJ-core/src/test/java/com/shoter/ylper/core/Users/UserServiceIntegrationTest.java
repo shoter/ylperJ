@@ -17,7 +17,7 @@ public class UserServiceIntegrationTest extends IntegrationTest {
     public void beforeEachTest() {
         super.beforeEachTest();
 
-        userService = new UserServiceImpl(session);
+        userService = new UserServiceImpl(new UserRepositoryImpl(session));
     }
 
     @Test

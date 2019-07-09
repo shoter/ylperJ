@@ -17,7 +17,7 @@ public class UserServiceTest{
 
     private User correctUser;
     private UserServiceImpl userService;
-    private Session sessionMock;
+    private UserRepository userRepositoryMock;
 
     @BeforeEach
     public void beforeEachTest() {
@@ -33,8 +33,8 @@ public class UserServiceTest{
         this.correctUser.setUsername("all");
         this.correctUser.setGender(someGender);
 
-        this.sessionMock = mock(Session.class);
-        this.userService = new UserServiceImpl(this.sessionMock);
+        this.userRepositoryMock = mock(UserRepository.class);
+        this.userService = new UserServiceImpl(this.userRepositoryMock);
 
     }
 

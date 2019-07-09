@@ -1,10 +1,7 @@
 package com.shoter.ylper.core.Users;
 
 import com.shoter.ylper.core.Bookings.Booking;
-import com.shoter.ylper.core.Cars.Car;
-import com.shoter.ylper.core.Cars.CarModel;
-import com.shoter.ylper.core.Cars.CarService;
-import com.shoter.ylper.core.Cars.CarServiceImpl;
+import com.shoter.ylper.core.Cars.*;
 import com.shoter.ylper.core.IntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +21,7 @@ public class CarServiceIntegrationTest extends IntegrationTest {
     @BeforeEach
     public void beforeEachTest() {
         super.beforeEachTest();
-        this.carService = new CarServiceImpl(session);
+        this.carService = new CarServiceImpl(new CarRepositoryImpl(session));
     }
 
     @Test
