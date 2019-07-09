@@ -1,9 +1,12 @@
 package com.shoter.ylper.core.Users;
 
+import com.shoter.ylper.core.Bookings.Booking;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Users")
@@ -30,6 +33,12 @@ public class User {
     @JoinColumn(name = "GenderId")
     @NotNull
     private Gender gender;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "UserId")
+    private Set<Booking> bookings;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "UserId")
+    private Set<Booking> demands;
 
 
     public long getId() {
@@ -81,5 +90,13 @@ public class User {
 
     public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
     }
 }
