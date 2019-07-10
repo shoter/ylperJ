@@ -4,6 +4,8 @@ import com.shoter.ylper.core.Common.StringHelper;
 import com.shoter.ylper.core.Results.MethodResult;
 import com.shoter.ylper.core.ServiceBase;
 
+import java.util.List;
+
 public class UserServiceImpl extends ServiceBase<User> implements UserService {
 
     private UserRepository userRepository;
@@ -65,5 +67,9 @@ public class UserServiceImpl extends ServiceBase<User> implements UserService {
 
     public void removeUser(final User user) {
          userRepository.remove(user);
+    }
+
+    public List<User> getUsers() {
+        return userRepository.getAll();
     }
 }

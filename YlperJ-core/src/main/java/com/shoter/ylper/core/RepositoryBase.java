@@ -4,7 +4,10 @@ import com.shoter.ylper.core.Results.MethodResult;
 import com.shoter.ylper.core.Users.User;
 import org.hibernate.Session;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.validation.ConstraintViolation;
+import java.util.List;
 import java.util.Set;
 
 public class RepositoryBase<TEntity> implements Repository<TEntity>{

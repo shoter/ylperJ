@@ -1,7 +1,5 @@
 com/shoter/ylper/core/Users/UserRepository.class
 com/shoter/ylper/core/Users/UserServiceImpl.class
-com/shoter/ylper/core/Bookings/DemandRepositoryImpl.class
-com/shoter/ylper/core/Bookings/DemandRepository.class
 com/shoter/ylper/core/Bookings/BookingRepository.class
 com/shoter/ylper/core/Users/UserRepositoryImpl.class
 com/shoter/ylper/core/Bookings/BookingRepositoryImpl.class

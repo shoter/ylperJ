@@ -5,6 +5,8 @@ import com.sun.jmx.mbeanserver.Repository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.util.List;
+
 public class UserRepositoryImpl extends RepositoryBase<User> implements  UserRepository {
     public UserRepositoryImpl(Session session) {
         super(session);
@@ -41,5 +43,9 @@ public class UserRepositoryImpl extends RepositoryBase<User> implements  UserRep
         query.setParameter("userId", userId);
 
         return query.uniqueResult() != null;
+    }
+
+    public List<User> getAll() {
+        return session.createQuery("from User").list();
     }
 }
