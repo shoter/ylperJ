@@ -11,4 +11,10 @@ public interface CarService  {
     void removeCar(long carId);
 
     Car getCar(long id);
+
+    MethodResult canInsertNewCarPosition(long carId, double x, double y);
+    CarLocationHistory insertNewCarPosition(long carId, double x, double y);
+
+    CarLocationHistory getLastCarPosition(long carId);
+
 }

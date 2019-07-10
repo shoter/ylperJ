@@ -55,6 +55,28 @@ public class CarServiceIntegrationTest extends IntegrationTest {
     }
 
     @Test
+    public void getLastCarPosition_shouldReturnLastPosition_thatHasBeenAddedToDatabase() throws InterruptedException {
+        Car car = carService.getCar(1);
+
+        double x = 1;
+        double y= 2;
+
+        carService.insertNewCarPosition(car.getId(), x, y);
+        CarLocationHistory db = carService.getLastCarPosition(car.getId());
+        assertEquals(x, db.getLocation().getX(), 0.01);
+        assertEquals(y, db.getLocation().getY(), 0.01);
+
+        //MySQL database could not handle very short interval and where not sorting this information correctly :(.
+        Thread.sleep(500);
+
+        x = 5; y = 2;
+        carService.insertNewCarPosition(car.getId(), x, y);
+        db = carService.getLastCarPosition(car.getId());
+        assertEquals(x, db.getLocation().getX(), 0.01);
+        assertEquals(y, db.getLocation().getY(), 0.01);
+    }
+
+    @Test
     public void canRemoveCar_shouldReturnFalse_ifThereIsABooking()
     {
         Car car = new Car();

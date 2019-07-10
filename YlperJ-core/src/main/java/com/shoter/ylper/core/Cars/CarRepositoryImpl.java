@@ -3,6 +3,13 @@ package com.shoter.ylper.core.Cars;
 import com.shoter.ylper.core.RepositoryBase;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.PrecisionModel;
+
+import java.util.Date;
+import java.util.List;
 
 public class CarRepositoryImpl extends RepositoryBase implements CarRepository {
 
@@ -28,5 +35,38 @@ public class CarRepositoryImpl extends RepositoryBase implements CarRepository {
 
     public void remove(long carId) {
          session.remove(session.load(Car.class, carId));
+    }
+
+    public CarLocationHistory insertNewPosition(long carId, Point point) {
+        CarLocationHistoryId id = new CarLocationHistoryId();
+        id.setDateTime(new Date());
+        id.setCarId(carId);
+
+        CarLocationHistory location = new CarLocationHistory();
+        location.setLocation(point);
+        location.setCarLocationHistoryPK(id);
+
+        session.beginTransaction();
+        session.save(location);
+        session.getTransaction().commit();
+
+        return location;
+    }
+
+    public CarLocationHistory getLastCarHistory(long carId) {
+        Query query = session.
+                createQuery("FROM CarLocationHistory location " +
+                        "WHERE location.carLocationHistoryPK.carId=:carId" +
+                        " ORDER BY location.carLocationHistoryPK.dateTime DESC");
+        query.setParameter("carId", carId);
+        query.setMaxResults(1);
+        query.setFirstResult(0);
+
+        List<CarLocationHistory> locations = query.list();
+
+        if(locations.size() == 0)
+            return null;
+
+        return locations.get(0);
     }
 }

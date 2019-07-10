@@ -2,6 +2,10 @@ package com.shoter.ylper.core.Cars;
 
 import com.shoter.ylper.core.Results.MethodResult;
 import com.shoter.ylper.core.ServiceBase;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.PrecisionModel;
 
 import javax.validation.ConstraintViolation;
 import java.util.Set;
@@ -9,9 +13,11 @@ import java.util.Set;
 public class CarServiceImpl extends ServiceBase implements CarService {
 
     private CarRepository carRepository;
+    private GeometryFactory geometryFactory;
 
     public CarServiceImpl(CarRepository carRepository) {
         this.carRepository = carRepository;
+        this.geometryFactory = new GeometryFactory(new PrecisionModel(), 0);
     }
 
     public MethodResult canAddCar(Car car) {
@@ -48,5 +54,22 @@ public class CarServiceImpl extends ServiceBase implements CarService {
 
     public Car getCar(final long id) {
         return carRepository.getCar(id);
+    }
+
+    public MethodResult canInsertNewCarPosition(long carId, double x, double y) {
+        if(carRepository.exist(carId) == false)
+            return new MethodResult(CarErrors.carNotExist);
+
+        return new MethodResult();
+    }
+
+    public CarLocationHistory insertNewCarPosition(long carId, double x, double y) {
+        Point point = geometryFactory.createPoint(new Coordinate(x,y));
+
+        return carRepository.insertNewPosition(carId, point);
+    }
+
+    public CarLocationHistory getLastCarPosition(long carId) {
+        return carRepository.getLastCarHistory(carId);
     }
 }

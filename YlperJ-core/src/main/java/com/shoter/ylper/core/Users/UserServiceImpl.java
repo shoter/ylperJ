@@ -3,6 +3,7 @@ package com.shoter.ylper.core.Users;
 import com.shoter.ylper.core.Common.StringHelper;
 import com.shoter.ylper.core.Results.MethodResult;
 import com.shoter.ylper.core.ServiceBase;
+import org.locationtech.jts.geom.Coordinate;
 
 import java.util.List;
 
