@@ -8,6 +8,7 @@ import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.PrecisionModel;
 
 import javax.validation.ConstraintViolation;
+import java.util.List;
 import java.util.Set;
 
 public class CarServiceImpl extends ServiceBase implements CarService {
@@ -33,6 +34,10 @@ public class CarServiceImpl extends ServiceBase implements CarService {
         carRepository.add(car);
     }
 
+    public boolean exists(long carId) {
+        return carRepository.exist(carId);
+    }
+
     public MethodResult canRemoveCar(final long carId) {
         if(carRepository.exist(carId) == false)
         {
@@ -56,6 +61,10 @@ public class CarServiceImpl extends ServiceBase implements CarService {
         return carRepository.getCar(id);
     }
 
+    public Car getFullCar(long id) {
+        return carRepository.getFullCar(id);
+    }
+
     public MethodResult canInsertNewCarPosition(long carId, double x, double y) {
         if(carRepository.exist(carId) == false)
             return new MethodResult(CarErrors.carNotExist);
@@ -71,5 +80,9 @@ public class CarServiceImpl extends ServiceBase implements CarService {
 
     public CarLocationHistory getLastCarPosition(long carId) {
         return carRepository.getLastCarHistory(carId);
+    }
+
+    public List<Car> getCars() {
+        return carRepository.getCars();
     }
 }

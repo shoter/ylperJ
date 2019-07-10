@@ -2,14 +2,25 @@ package com.shoter.ylper.api.Users.Models;
 
 import com.shoter.ylper.core.Users.User;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class UserModel {
     private long id;
+
+    @NotBlank
+    @Size(max = 50)
     private String username;
+
+    @NotBlank
+    @Size(max = 200)
     private String name;
+    @NotNull
     private Date birthday;
-    private byte gender;
+    @NotNull
+    private Byte gender;
 
     public UserModel()
     {

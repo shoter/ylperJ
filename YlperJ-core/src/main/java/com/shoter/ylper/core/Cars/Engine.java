@@ -15,6 +15,9 @@ public class Engine {
     @NotNull
     private FuelType fuelType;
 
+    @Column(name = "Power")
+    private int power;
+
     public FuelType getFuelType() {
         return fuelType;
     }
@@ -29,5 +32,13 @@ public class Engine {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
     }
 }

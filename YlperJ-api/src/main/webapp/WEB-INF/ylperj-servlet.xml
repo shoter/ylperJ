@@ -11,7 +11,7 @@
  http://www.springframework.org/schema/mvc/spring-mvc.xsd
 ">
 
-    <context:component-scan base-package="com.shoter.ylper.api" />
+    <context:component-scan base-package="com.shoter.ylper.api"/>
 
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -25,5 +25,8 @@
 
     <mvc:annotation-driven>
     </mvc:annotation-driven>
+
+    <bean id="validator"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
 </beans>

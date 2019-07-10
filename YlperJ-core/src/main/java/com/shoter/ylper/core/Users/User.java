@@ -3,6 +3,7 @@ package com.shoter.ylper.core.Users;
 import com.shoter.ylper.core.Bookings.Booking;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -17,11 +18,11 @@ public class User {
     private long Id;
     @Column(name = "Username", nullable = false, updatable = true, length = 50)
     @Size(max = 50)
-    @NotNull
+    @NotBlank
     private String username;
     @Column(name="Name", nullable = false, updatable = true, length = 200)
     @Size(max=200)
-    @NotNull
+    @NotBlank
     private String name;
     @NotNull
     @Column(name="Birthday", nullable = false, updatable = true)

@@ -69,4 +69,23 @@ public class CarRepositoryImpl extends RepositoryBase implements CarRepository {
 
         return locations.get(0);
     }
+
+    public Car getFullCar(long carId) {
+        Query query = session
+                .createQuery("Select car FROM Car car " +
+                        "JOIN FETCH car.carModel model " +
+                        "JOIN FETCH model.designerCompany " +
+                        "JOIN FETCH model.engine engine " +
+                        "JOIN FETCH engine.fuelType " +
+                        "JOIN FETCH model.luxuryCategory " +
+                        "JOIN FETCH car.carFeatures " +
+                        "WHERE car.id=:carId");
+        query.setParameter("carId", carId);
+
+       return (Car)query.getSingleResult();
+    }
+
+    public List<Car> getCars() {
+        return session.createQuery("from Car").list();
+    }
 }

@@ -1,9 +1,10 @@
-package com.shoter.ylper.core.Users;
+package com.shoter.ylper.core.Cars;
 
 import com.shoter.ylper.core.Bookings.Booking;
 import com.shoter.ylper.core.Cars.*;
 import com.shoter.ylper.core.IntegrationTest;
 import com.shoter.ylper.core.Results.MethodResult;
+import com.shoter.ylper.core.Users.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
@@ -67,7 +68,7 @@ public class CarServiceIntegrationTest extends IntegrationTest {
         assertEquals(y, db.getLocation().getY(), 0.01);
 
         //MySQL database could not handle very short interval and where not sorting this information correctly :(.
-        Thread.sleep(500);
+        Thread.sleep(1200);
 
         x = 5; y = 2;
         carService.insertNewCarPosition(car.getId(), x, y);
@@ -107,5 +108,13 @@ public class CarServiceIntegrationTest extends IntegrationTest {
     public void canRemoveCar_shouldReturnFalse_ifThereIsNoCar()
     {
         assertTrue(carService.canRemoveCar(-123456).hasError(CarErrors.carNotExist));
+    }
+
+    @Test
+    public void getFullCar_shouldNotThrowException()
+    {
+        Car car =carService.getFullCar(1);
+        // let's access fuel just for test.
+        FuelType fuel = car.getCarModel().getEngine().getFuelType();
     }
 }

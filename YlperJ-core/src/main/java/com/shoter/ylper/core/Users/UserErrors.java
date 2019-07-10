@@ -13,4 +13,6 @@ public class UserErrors {
 
     public static final String cannotRemoveBecauseOfDemands = "Cannot remove user with demands!";
 
+    public static final String birthdayCannotBeInFuture = "You cannot enter birthday from future!";
+
 }

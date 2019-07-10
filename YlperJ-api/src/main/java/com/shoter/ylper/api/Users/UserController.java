@@ -1,5 +1,6 @@
 package com.shoter.ylper.api.Users;
 
+import com.shoter.ylper.api.Common.ControllerBase;
 import com.shoter.ylper.api.Common.EntityFactory;
 import com.shoter.ylper.api.Common.ErrorResponse;
 import com.shoter.ylper.api.Users.Models.UserModel;
@@ -12,19 +13,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping( value = "/users")
-public class UserController {
+public class UserController extends ControllerBase {
 
     private UserService userService;
     private EntityFactory entityFactory;
 
     @Autowired
-    public UserController(UserService userService, EntityFactory entityFactory)
+    public UserController(UserService userService, EntityFactory entityFactory, Validator validator)
     {
+        super(validator);
        this.userService = userService;
        this.entityFactory = entityFactory;
     }
@@ -56,6 +61,12 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody ResponseEntity createUser(@RequestBody UserModel userModel)
     {
+        Set<ConstraintViolation<UserModel>> violations = validator.validate(userModel);
+        if(violations.isEmpty() == false)
+        {
+            return response400(violations);
+        }
+
         User user = entityFactory.create(User.class, userModel);
         MethodResult result = userService.canAddUser(user);
 

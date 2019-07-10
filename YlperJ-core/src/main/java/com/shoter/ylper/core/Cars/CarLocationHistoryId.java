@@ -36,4 +36,22 @@ public class CarLocationHistoryId implements Serializable {
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o)
+            return true;
+
+        if(o == null || getClass() != o.getClass())
+            return false;
+
+        CarLocationHistoryId id = (CarLocationHistoryId)o;
+
+        return id.getCarId() == getCarId() && id.getDateTime().equals(getDateTime());
+    }
+
+    @Override
+    public int hashCode() {
+        return new Long(carId).hashCode()+ dateTime.hashCode();
+    }
 }

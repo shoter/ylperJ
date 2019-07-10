@@ -56,7 +56,7 @@ m1=1</panel_attributes>
     </coordinates>
     <panel_attributes>CarCompany
 --
-Id : uint
+Id : int
 Name: string[100]</panel_attributes>
     <additional_attributes/>
   </element>
@@ -70,8 +70,8 @@ Name: string[100]</panel_attributes>
     </coordinates>
     <panel_attributes>Car
 --
-Id: uBigInt
-CarModelId: uInt
+Id: BigInt
+CarModelId: Int
 CreateDate: DateTime
 CarFeatures: CarAssignedFeature[]</panel_attributes>
     <additional_attributes/>
@@ -86,10 +86,10 @@ CarFeatures: CarAssignedFeature[]</panel_attributes>
     </coordinates>
     <panel_attributes>CarModel
 --
-Id: uint
-DesignerCompanyId: uint
-EngineId: uInt
-LuxuryCategoryId: utinyInt
+Id: int
+DesignerCompanyId: int
+EngineId: Int
+LuxuryCategoryId: tinyInt
 Name: string[100]
 FuelConsumption: Decimal(5,2)
 
@@ -131,7 +131,7 @@ m1=1
     </coordinates>
     <panel_attributes>CarLuxuryCategory
 --
-Id : utinyInt
+Id : tinyInt
 Name: string[50]</panel_attributes>
     <additional_attributes/>
   </element>
@@ -158,7 +158,7 @@ m1=1
     </coordinates>
     <panel_attributes>CarFeature
 --
-Id: uint
+Id: int
 Name: string[100]
 bg=yellow</panel_attributes>
     <additional_attributes/>
@@ -185,9 +185,9 @@ m1=0..n</panel_attributes>
     </coordinates>
     <panel_attributes>Engine
 --
-Id: uInt
-FuelTypeId: utinyint
-Power: uInt</panel_attributes>
+Id: Int
+FuelTypeId: tinyint
+Power: Int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -332,7 +332,7 @@ m1=0..n</panel_attributes>
     </coordinates>
     <panel_attributes>FuelType
 --
-Id: utinyInt
+Id: tinyInt
 Name: String[40]</panel_attributes>
     <additional_attributes/>
   </element>

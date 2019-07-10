@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
+
+import java.util.Calendar;
 import java.util.Date;
 
 public class UserServiceTest{
@@ -52,6 +54,15 @@ public class UserServiceTest{
         when(userRepositoryMock.userExists(anyString())).thenReturn(true);
         MethodResult result = userService.canAddUser(correctUser);
         assertTrue(result.hasError(UserErrors.userWithUsernameExist));
+    }
+
+    @Test void canAddUser_returnFalse_whenBirthdayIsInFuture()
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) + 1);
+        correctUser.setBirthDay(cal.getTime());
+        MethodResult result = userService.canAddUser(correctUser);
+        assertTrue(result.hasError(UserErrors.birthdayCannotBeInFuture));
     }
 
     @Test

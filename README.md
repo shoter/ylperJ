@@ -1,3 +1,18 @@
+## New knowledge
+
+During creating this project I learned a lot of new technologies which were unknown for me before. I heard about them but never used them in action.
+Technologies that I had first contact with are:
+
+* Maven
+* Spring (MVC)
+* JUnit
+* Hibernate
+* Multi-Module projects in Java
+
+This is also one of the reason why the exercise took me so long. I just was not used to all those techs and some things took longer than they should.
+It is worth nothing right now that I know those technologies and process of my integration into company will be easier. This is my act of showing you
+that I am able to learn much more than I know right now even in unknown technologies.
+
 ## Design choices
 
 ### Database choice
