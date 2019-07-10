@@ -1,9 +1,9 @@
-package com.shoter.ylper.core.Bookings;
+package com.shoter.ylper.core.Demands;
 
 import com.shoter.ylper.core.Cars.Car;
 import com.shoter.ylper.core.Cars.CarFeature;
 import com.shoter.ylper.core.Users.User;
-import com.vividsolutions.jts.geom.Point;
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -39,7 +39,7 @@ public class Demand {
     @NotNull
     private Point desiredDropLocation;
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(
             name="DemandFeatures",
             joinColumns = @JoinColumn( name = "DemandId"),
