@@ -11,5 +11,4 @@ public interface CarService  {
     void removeCar(long carId);
 
     Car getCar(long id);
-
 }

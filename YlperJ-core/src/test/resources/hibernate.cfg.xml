@@ -35,7 +35,7 @@
         <mapping class="com.shoter.ylper.core.Users.Gender"/>
         <mapping class="com.shoter.ylper.core.Users.User"/>
         <mapping class="com.shoter.ylper.core.Bookings.Booking" />
-        <mapping class="com.shoter.ylper.core.Bookings.Demand" />
+        <mapping class="com.shoter.ylper.core.Demands.Demand" />
         <mapping class="com.shoter.ylper.core.Cars.FuelType" />
         <mapping class="com.shoter.ylper.core.Cars.Engine" />
         <mapping class="com.shoter.ylper.core.Cars.CarLuxuryCategory" />

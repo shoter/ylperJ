@@ -1,10 +1,6 @@
 package com.shoter.ylper.core.Users;
 
-import com.mysql.cj.util.StringUtils;
-import com.shoter.ylper.core.IntegrationTest;
 import com.shoter.ylper.core.Results.MethodResult;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.internal.util.StringHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +32,7 @@ public class UserServiceTest{
 
         this.userRepositoryMock = mock(UserRepository.class);
 
-        when(this.userRepositoryMock.userExist(anyString())).thenReturn(false);
+        when(this.userRepositoryMock.userExists(anyString())).thenReturn(false);
         when(this.userRepositoryMock.hasAnyBookings(anyLong())).thenReturn(false);
         when(this.userRepositoryMock.hasAnyDemands(anyLong())).thenReturn(false);
 
@@ -53,7 +49,7 @@ public class UserServiceTest{
 
     @Test void canAddUser_returnFalse_whenUsernameAlreadyExist()
     {
-        when(userRepositoryMock.userExist(anyString())).thenReturn(true);
+        when(userRepositoryMock.userExists(anyString())).thenReturn(true);
         MethodResult result = userService.canAddUser(correctUser);
         assertTrue(result.hasError(UserErrors.userWithUsernameExist));
     }

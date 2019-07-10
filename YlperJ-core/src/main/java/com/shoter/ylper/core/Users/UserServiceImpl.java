@@ -1,14 +1,8 @@
 package com.shoter.ylper.core.Users;
 
 import com.shoter.ylper.core.Common.StringHelper;
-import com.shoter.ylper.core.Database.SessionOperation;
-import com.shoter.ylper.core.Database.SessionTransactionOperation;
 import com.shoter.ylper.core.Results.MethodResult;
 import com.shoter.ylper.core.ServiceBase;
-import org.hibernate.Session;
-
-import javax.validation.ConstraintViolation;
-import java.util.Set;
 
 public class UserServiceImpl extends ServiceBase<User> implements UserService {
 
@@ -30,7 +24,7 @@ public class UserServiceImpl extends ServiceBase<User> implements UserService {
         {
             result.addError(UserErrors.usernameNotTrimmed);
         }
-        else if(userRepository.userExist(user.getUsername()))
+        else if(userRepository.userExists(user.getUsername()))
         {
             result.addError(UserErrors.userWithUsernameExist);
         }

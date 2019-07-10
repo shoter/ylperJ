@@ -4,4 +4,6 @@ import com.shoter.ylper.core.Repository;
 import com.shoter.ylper.core.Results.MethodResult;
 
 public interface BookingRepository extends Repository<Booking> {
+    boolean exists(long bookingId);
+    Booking get(long bookingId);
 }

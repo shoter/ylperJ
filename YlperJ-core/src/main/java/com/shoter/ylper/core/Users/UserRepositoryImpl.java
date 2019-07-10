@@ -15,23 +15,30 @@ public class UserRepositoryImpl extends RepositoryBase<User> implements  UserRep
     }
 
     public boolean hasAnyBookings(long userId) {
-       Query query = session.createQuery("select 1 from Booking where Booking.userId=:userId") ;
+       Query query = session.createQuery("select 1 from Booking booking where booking.userId=:userId") ;
        query.setParameter("userId", userId);
 
        return query.uniqueResult() != null;
     }
 
     public boolean hasAnyDemands(long userId) {
-        Query query = session.createQuery("select 1 from Demand where Demand.userId=:userId") ;
+        Query query = session.createQuery("select 1 from Demand demand where demand.userId=:userId") ;
         query.setParameter("userId", userId);
 
         return query.uniqueResult() != null;
     }
 
 
-    public boolean userExist(String username) {
-        Query query = session.createQuery("select 1 from User where User.username=:username");
+    public boolean userExists(String username) {
+        Query query = session.createQuery("select 1 from User user where user.username=:username");
         query.setParameter("username", username);
+
+        return query.uniqueResult() != null;
+    }
+
+    public boolean userExists(long userId) {
+        Query query = session.createQuery("select 1 from User user where user.id=:userId");
+        query.setParameter("userId", userId);
 
         return query.uniqueResult() != null;
     }

@@ -28,4 +28,10 @@ public class RepositoryBase<TEntity> implements Repository<TEntity>{
         session.remove(entity);
         session.getTransaction().commit();
     }
+
+    public void update(TEntity entity) {
+        session.beginTransaction();
+        session.update(entity);
+        session.getTransaction().commit();
+    }
 }
