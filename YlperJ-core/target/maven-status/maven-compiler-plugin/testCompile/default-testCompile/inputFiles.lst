@@ -7,4 +7,5 @@
 /home/damian/Programming/Java/ylperJ/YlperJ-core/src/test/java/com/shoter/ylper/core/IntegrationTest.java
 /home/damian/Programming/Java/ylperJ/YlperJ-core/src/test/java/com/shoter/ylper/core/YlperTest.java
 /home/damian/Programming/Java/ylperJ/YlperJ-core/src/test/java/com/shoter/ylper/core/Common/StringHelperTest.java
+/home/damian/Programming/Java/ylperJ/YlperJ-core/src/test/java/com/shoter/ylper/core/Bookings/CarInnersRepositoryIntegrationTests.java
 /home/damian/Programming/Java/ylperJ/YlperJ-core/src/test/java/com/shoter/ylper/core/Users/UserServiceTest.java
