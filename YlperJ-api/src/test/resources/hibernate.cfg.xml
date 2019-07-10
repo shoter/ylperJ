@@ -19,10 +19,11 @@
         <property name="connection.username">Ylper</property>
         <property name="connection.password">!Qazxsw2</property>
 
-        <property name="hibernate.dialect">org.hibernate.spatial.dialect.mysql.MySQLSpatialDialect</property>
 
         <!-- Disable the second-level cache  -->
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+        <property name="hibernate.dialect">org.hibernate.spatial.dialect.mysql.MySQL5InnoDBSpatialDialect</property>
 
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
@@ -32,6 +33,18 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="com.shoter.ylper.core.Users.Gender"/>
+        <mapping class="com.shoter.ylper.core.Users.User"/>
+        <mapping class="com.shoter.ylper.core.Bookings.Booking" />
+        <mapping class="com.shoter.ylper.core.Demands.Demand" />
+        <mapping class="com.shoter.ylper.core.Cars.FuelType" />
+        <mapping class="com.shoter.ylper.core.Cars.Engine" />
+        <mapping class="com.shoter.ylper.core.Cars.CarLuxuryCategory" />
+        <mapping class="com.shoter.ylper.core.Cars.CarCompany" />
+        <mapping class="com.shoter.ylper.core.Cars.CarModel" />
+        <mapping class="com.shoter.ylper.core.Cars.CarFeature" />
+        <mapping class="com.shoter.ylper.core.Cars.Car" />
+        <mapping class="com.shoter.ylper.core.Cars.CarLocationHistory" />
+
 
     </session-factory>
 
