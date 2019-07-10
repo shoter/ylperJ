@@ -43,6 +43,11 @@ public class MethodResult {
         return this;
     }
 
+    public Collection<String> getErrors()
+    {
+        return this.errors;
+    }
+
     public boolean hasError(String error)
     {
         for(String e : errors)

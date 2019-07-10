@@ -47,7 +47,7 @@ public class UserServiceImpl extends ServiceBase<User> implements UserService {
 
     public MethodResult canRemoveUser(User user) {
 
-        if(userRepository.getUser(user.getId()) == null)
+        if(user == null || userRepository.getUser(user.getId()) == null)
         {
             return new MethodResult(UserErrors.userNotExist);
         }

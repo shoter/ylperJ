@@ -17,14 +17,14 @@ public class UserRepositoryImpl extends RepositoryBase<User> implements  UserRep
     }
 
     public boolean hasAnyBookings(long userId) {
-       Query query = session.createQuery("select 1 from Booking booking where booking.userId=:userId") ;
+       Query query = session.createQuery("select 1 from Booking booking where booking.user.id=:userId") ;
        query.setParameter("userId", userId);
 
        return query.uniqueResult() != null;
     }
 
     public boolean hasAnyDemands(long userId) {
-        Query query = session.createQuery("select 1 from Demand demand where demand.userId=:userId") ;
+        Query query = session.createQuery("select 1 from Demand demand where demand.user.id=:userId") ;
         query.setParameter("userId", userId);
 
         return query.uniqueResult() != null;

@@ -1,14 +1,16 @@
 package com.shoter.ylper.api.Users;
 
+import com.shoter.ylper.api.Common.EntityFactory;
+import com.shoter.ylper.api.Common.ErrorResponse;
 import com.shoter.ylper.api.Users.Models.UserModel;
+import com.shoter.ylper.core.Results.MethodResult;
 import com.shoter.ylper.core.Users.User;
 import com.shoter.ylper.core.Users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +20,13 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+    private EntityFactory entityFactory;
 
     @Autowired
-    public UserController(UserService userService)
+    public UserController(UserService userService, EntityFactory entityFactory)
     {
        this.userService = userService;
+       this.entityFactory = entityFactory;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -37,4 +41,49 @@ public class UserController {
 
         return returnVal;
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{userId}")
+    public @ResponseBody ResponseEntity<UserModel> getUser(@PathVariable long userId)
+    {
+        User user = userService.getUser(userId);
+
+        if(user == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+
+        return ResponseEntity.status(200).body(new UserModel(user));
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity createUser(@RequestBody UserModel userModel)
+    {
+        User user = entityFactory.create(User.class, userModel);
+        MethodResult result = userService.canAddUser(user);
+
+        if(result.isFailure())
+        {
+            return ResponseEntity.status(400).body(new ErrorResponse(result));
+        }
+
+        userService.addUser(user);
+
+        return ResponseEntity.status(200).body(new UserModel(user));
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{userId}")
+    public @ResponseBody ResponseEntity deleteUser(@PathVariable long userId)
+    {
+        User user = userService.getUser(userId);
+
+        MethodResult result = userService.canRemoveUser(user);
+
+        if(result.isFailure())
+        {
+            return ResponseEntity.status(400).body(new ErrorResponse(result));
+        }
+
+        userService.removeUser(user);
+
+        return ResponseEntity.status(200).body(null);
+    }
+
 }
