@@ -4,10 +4,7 @@ import com.shoter.ylper.core.Bookings.BookingRepository;
 import com.shoter.ylper.core.Bookings.BookingRepositoryImpl;
 import com.shoter.ylper.core.Bookings.BookingService;
 import com.shoter.ylper.core.Bookings.BookingServiceImpl;
-import com.shoter.ylper.core.Cars.CarRepository;
-import com.shoter.ylper.core.Cars.CarRepositoryImpl;
-import com.shoter.ylper.core.Cars.CarService;
-import com.shoter.ylper.core.Cars.CarServiceImpl;
+import com.shoter.ylper.core.Cars.*;
 import com.shoter.ylper.core.Demands.DemandRepository;
 import com.shoter.ylper.core.Demands.DemandRepositoryImpl;
 import com.shoter.ylper.core.Demands.DemandService;
@@ -102,11 +99,21 @@ public class AppConfig implements WebMvcConfigurer {
     }
 
     @Bean
+    @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    @Autowired
+    public CarInnersRepository carInnersRepository(Session session)
+    {
+        return new CarInnersRepositoryImpl(session);
+    }
+
+    @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public Validator validator()
     {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         return factory.getValidator();
     }
+
+
 
 }
