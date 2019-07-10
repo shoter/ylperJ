@@ -29,7 +29,7 @@ public class BookingServiceImpl extends ServiceBase<Booking> implements BookingS
             result.addError(BookingErrors.userNotExist);
         }
 
-        if(carRepository.exist(booking.getCar().getId()))
+        if(carRepository.exist(booking.getCar().getId()) == false)
         {
             result.addError(BookingErrors.carNotExist);
         }
@@ -75,7 +75,7 @@ public class BookingServiceImpl extends ServiceBase<Booking> implements BookingS
 
         if(point == null)
         {
-            return new MethodResult(BookingErrors.dropPointCannotBeNullt);
+            return new MethodResult(BookingErrors.dropPointCannotBeNull);
         }
 
         MethodResult result = new MethodResult();
@@ -84,10 +84,10 @@ public class BookingServiceImpl extends ServiceBase<Booking> implements BookingS
 
         if(time.before(booking.getStartDateTime()))
         {
-            return new MethodResult(BookingErrors.dropTimeBeforeStartTime);
+            result.addError(BookingErrors.dropTimeBeforeStartTime);
         }
 
-        return new MethodResult();
+        return result;
     }
 
     public void updateDropInfo(long bookingId, Date time, Point point) {

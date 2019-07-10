@@ -10,13 +10,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.PrecisionModel;
 
-public class IntegrationTest {
+public class IntegrationTest extends YlperTest {
     protected SessionFactory sessionFactory;
     protected Session session;
-    protected GeometryFactory geometryFactory;
+
 
     @BeforeEach
+    @Override
     public void beforeEachTest() {
+        super.beforeEachTest();
         // A SessionFactory is set up once for an application!
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -24,7 +26,7 @@ public class IntegrationTest {
         try {
             sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
             session = sessionFactory.openSession();
-            geometryFactory = new GeometryFactory(new PrecisionModel(), 0);
+
         }
         catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
