@@ -39,7 +39,7 @@ public class CarServiceImpl extends ServiceBase implements CarService {
         {
             result.addError(CarErrors.cannotRemoveBecauseBookings);
         }
-        return new MethodResult();
+        return result;
     }
 
     public void removeCar(final long carId) {

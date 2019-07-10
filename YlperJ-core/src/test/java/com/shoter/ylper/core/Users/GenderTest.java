@@ -13,8 +13,6 @@ public class GenderTest extends IntegrationTest {
     @Test
     public void database_shouldcontain_threegenders()
     {
-        session.beginTransaction();
-
         List<Gender> result = session.createQuery("from Gender").list();
         assertEquals(3, result.size());
     }

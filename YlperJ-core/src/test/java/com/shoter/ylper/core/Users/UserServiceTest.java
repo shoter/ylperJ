@@ -63,7 +63,7 @@ public class UserServiceTest{
     {
         this.correctUser.setGender(null);
         MethodResult result = userService.canAddUser(correctUser);
-        assertTrue(result.hasError(UserErrors.incorrectGender));
+        assertFalse(result.isSuccess());
     }
 
     @Test

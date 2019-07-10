@@ -3,6 +3,7 @@ package com.shoter.ylper.core.Users;
 import com.shoter.ylper.core.Bookings.Booking;
 import com.shoter.ylper.core.Cars.*;
 import com.shoter.ylper.core.IntegrationTest;
+import com.shoter.ylper.core.Results.MethodResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
@@ -76,12 +77,13 @@ public class CarServiceIntegrationTest extends IntegrationTest {
 
         carService.addCar(car);
 
-        assertTrue(carService.canRemoveCar(car.getId()).hasError(CarErrors.cannotRemoveBecauseBookings));
+        MethodResult result = carService.canRemoveCar(car.getId());
+        assertTrue(result.hasError(CarErrors.cannotRemoveBecauseBookings));
     }
 
     @Test
     public void canRemoveCar_shouldReturnFalse_ifThereIsNoCar()
     {
-
+        assertTrue(carService.canRemoveCar(-123456).hasError(CarErrors.carNotExist));
     }
 }

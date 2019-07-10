@@ -12,7 +12,7 @@ public class CarRepositoryImpl extends RepositoryBase implements CarRepository {
 
 
     public long getBookingsCountForCar(long carId) {
-        Query query =session.createQuery("Select count(*) from Booking booking where booking.carId=:carId");
+        Query query =session.createQuery("Select count(booking) from Booking booking where booking.car.id=:carId");
         query.setParameter("carId", carId);
 
         return (long)(Long) query.uniqueResult();

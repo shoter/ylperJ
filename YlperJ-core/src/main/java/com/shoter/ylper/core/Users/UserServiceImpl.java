@@ -10,7 +10,7 @@ import org.hibernate.Session;
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 
-public class UserServiceImpl extends ServiceBase implements UserService {
+public class UserServiceImpl extends ServiceBase<User> implements UserService {
 
     private UserRepository userRepository;
 
@@ -35,8 +35,7 @@ public class UserServiceImpl extends ServiceBase implements UserService {
             result.addError(UserErrors.userWithUsernameExist);
         }
 
-        Set<ConstraintViolation<User>> violations = validator.validate(user);
-        result.addError(violations);
+        result = MethodResult.merge(result, validate(user));
 
         return result;
     }
