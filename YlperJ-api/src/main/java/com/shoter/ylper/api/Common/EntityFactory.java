@@ -104,4 +104,17 @@ public class EntityFactory {
         return booking;
     }
 
+    public Demand create(Class<Demand> demandClass, Booking booking)
+    {
+        Demand demand = new Demand();
+        demand.setUser(booking.getUser());
+        demand.setDesiredDropLocation(booking.getDropPosition());
+        demand.setDesiredPickupLocation(booking.getPickupPosition());
+        demand.setDesiredStartDateTime(booking.getStartDateTime());
+        demand.setDesiredDropDateTime(booking.getEndDateTime());
+        demand.setDesiredCarFeatures(booking.getCar().getCarFeatures());
+
+        return demand;
+    }
+
 }

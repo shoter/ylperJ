@@ -5,6 +5,8 @@ import com.shoter.ylper.api.Common.EntityFactory;
 import com.shoter.ylper.api.Users.Models.UserModel;
 import com.shoter.ylper.core.Bookings.Booking;
 import com.shoter.ylper.core.Bookings.BookingService;
+import com.shoter.ylper.core.Demands.Demand;
+import com.shoter.ylper.core.Demands.DemandService;
 import com.shoter.ylper.core.Results.MethodResult;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,10 +24,12 @@ import java.util.Set;
 public class BookingController extends ControllerBase {
     private EntityFactory entityFactory;
     private BookingService bookingService;
+    private DemandService demandService;
 
-    public BookingController(Validator validator, EntityFactory entityFactory, BookingService bookingService) {
+    public BookingController(Validator validator, EntityFactory entityFactory, BookingService bookingService, DemandService demandService) {
         super(validator);
         this.entityFactory = entityFactory;
+        this.demandService = demandService;
         this.bookingService =bookingService;
     }
 
@@ -41,6 +45,10 @@ public class BookingController extends ControllerBase {
 
         Booking booking = entityFactory.create(Booking.class, model);
 
+        Demand demand = entityFactory.create(Demand.class, booking);
+        if(demandService.canAdd(demand).isSuccess())
+            demandService.add(demand);
+
         MethodResult result = bookingService.canAdd(booking);
 
         if(result.isFailure())
@@ -49,7 +57,8 @@ public class BookingController extends ControllerBase {
         bookingService.add(booking);
 
         return ResponseEntity.ok(new BookingModel(bookingService.getBooking(booking.getId())));
-
     }
+
+
 
 }

@@ -1,3 +1,18 @@
+#YlperJ
+
+## How to run
+
+### make test
+
+It will:
+
+* Build YlperJ-core module and install it in local maven repository.
+* Build db docker image and deploy it exposing port 11_000 for db access ( login : Ylper password: !Qazxsw2 )
+* Build api and deploy it to container. It exposes port 11_080
+* Run Integration tests against db
+* (not done - I wanted to do that) Run acceptance test against running api container - probably I would use Python or Java to do that.
+*
+
 ## New knowledge
 
 During creating this project I learned a lot of new technologies which were unknown for me before. I heard about them but never used them in action.
