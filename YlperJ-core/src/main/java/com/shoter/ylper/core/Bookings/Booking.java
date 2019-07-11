@@ -36,9 +36,11 @@ public class Booking {
     private Point pickupPosition;
 
     @Column(name = "EndDateTime")
+    @NotNull
     private Date endDateTime;
 
     @Column(name = "DropPosition", columnDefinition = "geometry(POINT, 0)")
+    @NotNull
     private Point dropPosition;
 
     public long getId() {

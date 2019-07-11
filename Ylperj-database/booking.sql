@@ -6,8 +6,8 @@ CREATE TABLE Bookings (
     CarId BIGINT  NOT NULL,
     StartDateTime DATETIME NOT NULL,
     PickupPosition POINT NOT NULL,
-    EndDateTime DATETIME,
-    DropPosition POINT,
+    EndDateTime DATETIME NOT NULL,
+    DropPosition POINT NOT NULL,
 
     PRIMARY KEY(Id),
     FOREIGN KEY(UserId) REFERENCES Users(Id),

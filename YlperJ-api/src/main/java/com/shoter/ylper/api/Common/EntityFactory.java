@@ -112,7 +112,16 @@ public class EntityFactory {
         demand.setDesiredPickupLocation(booking.getPickupPosition());
         demand.setDesiredStartDateTime(booking.getStartDateTime());
         demand.setDesiredDropDateTime(booking.getEndDateTime());
-        demand.setDesiredCarFeatures(booking.getCar().getCarFeatures());
+
+        if(booking.getCar().getCarFeatures() != null)
+        {
+            Set<CarFeature> features = new HashSet<CarFeature>();
+            for(CarFeature f : booking.getCar().getCarFeatures())
+            {
+                features.add(f);
+            }
+            demand.setDesiredCarFeatures(features);
+        }
 
         return demand;
     }

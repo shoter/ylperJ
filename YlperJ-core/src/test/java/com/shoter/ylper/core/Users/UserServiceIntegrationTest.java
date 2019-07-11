@@ -77,7 +77,9 @@ public class UserServiceIntegrationTest extends IntegrationTest {
         booking.setCar(testCar);
         booking.setUser(correctUser);
         booking.setStartDateTime(new Date());
+        booking.setEndDateTime(new Date());
         booking.setPickupPosition(geometryFactory.createPoint(new Coordinate(1,2)));
+        booking.setDropPosition(geometryFactory.createPoint(new Coordinate(3,2)));
 
         session.beginTransaction();
         session.save(booking);

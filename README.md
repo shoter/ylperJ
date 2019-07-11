@@ -1,5 +1,11 @@
 #YlperJ
 
+## Important
+
+I was programming this API on Debian 9 Stretch. It's very very likely that it will work best on this system and after that on other linux systems.
+
+I do not think build scripts will work on Windows.
+
 ## How to run
 
 ### make test
@@ -11,7 +17,7 @@ It will:
 * Build api and deploy it to container. It exposes port 11_080
 * Run Integration tests against db
 * (not done - I wanted to do that) Run acceptance test against running api container - probably I would use Python or Java to do that.
-*
+* You can use my requests collections from Postman to test requests against API. They are in ./postman
 
 ## New knowledge
 
@@ -66,6 +72,8 @@ in the way that enables us to run in on any platform - console, gui, web api etc
 That's why i create Ylper-core project which is front-end independent library for my project.
 It added some more difficulty for me as I never used maven and multi modules projects but this is better design choice.
 
+### User can book several cars in given time frame but given car cannot be booked several times in same time frame (as per spec.)
+
 ## Challenges
 
 I also encountered some challenges which increased time of me battling with frameworks or other things.
@@ -75,6 +83,15 @@ I also encountered some challenges which increased time of me battling with fram
 
 I created [Stack Overflow Question](https://stackoverflow.com/questions/56927248/cannot-insert-point-into-mysql-database-using-hibernate-spatial) about my problem.
 It turned out that something was wrong with serialization and I spent some time to figure out what I am doing wrong.
+
+### Todo
+
+Things that I did not complete yet but will do in 1-3 days.
+
+* When maven runs test in build script it should not spam us with unnecesarry logs. Only exception if needed.
+* Try to figure out a way for automatic validation with @Valid annotation.
+* Different ports/env. for test/release
+* Create method for finding car for a booking.
 
 
 
