@@ -78,7 +78,7 @@ public class CarRepositoryImpl extends RepositoryBase implements CarRepository {
                         "JOIN FETCH model.engine engine " +
                         "JOIN FETCH engine.fuelType " +
                         "JOIN FETCH model.luxuryCategory " +
-                        "JOIN FETCH car.carFeatures " +
+                        "LEFT JOIN FETCH car.carFeatures " +
                         "WHERE car.id=:carId");
         query.setParameter("carId", carId);
 

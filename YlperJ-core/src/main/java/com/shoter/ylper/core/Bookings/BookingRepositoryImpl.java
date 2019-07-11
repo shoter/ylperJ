@@ -1,8 +1,11 @@
 package com.shoter.ylper.core.Bookings;
 
+import com.shoter.ylper.core.Demands.Demand;
 import com.shoter.ylper.core.RepositoryBase;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class BookingRepositoryImpl extends RepositoryBase<Booking> implements BookingRepository {
     public BookingRepositoryImpl(Session session) {
@@ -18,5 +21,14 @@ public class BookingRepositoryImpl extends RepositoryBase<Booking> implements Bo
 
     public Booking get(long bookingId) {
         return session.get(Booking.class, bookingId);
+    }
+
+    public List<Booking> getBookingsForUser(long userId) {
+        Query query = session
+                .createQuery("Select booking from Booking booking " +
+                        "WHERE booking.user.id=:userId", Booking.class);
+        query.setParameter("userId", userId);
+
+        return query.list();
     }
 }

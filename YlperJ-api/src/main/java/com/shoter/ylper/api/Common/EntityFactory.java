@@ -1,14 +1,20 @@
 package com.shoter.ylper.api.Common;
 
 import com.shoter.ylper.api.Cars.CarCreateModel;
+import com.shoter.ylper.api.Cars.CarFeatureModel;
 import com.shoter.ylper.api.Cars.CarShortModel;
+import com.shoter.ylper.api.Cars.DemandModel;
 import com.shoter.ylper.api.Users.Models.UserModel;
 import com.shoter.ylper.core.Cars.Car;
 import com.shoter.ylper.core.Cars.CarFeature;
 import com.shoter.ylper.core.Cars.CarModel;
+import com.shoter.ylper.core.Demands.Demand;
 import com.shoter.ylper.core.Users.Gender;
 import com.shoter.ylper.core.Users.User;
 import org.hibernate.Session;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,11 +25,13 @@ import java.util.Set;
 @Component
 public class EntityFactory {
     private Session session;
+    private GeometryFactory geometryFactory;
 
     @Autowired
     public EntityFactory(Session session)
     {
         this.session = session;
+        this.geometryFactory = new GeometryFactory(new PrecisionModel(), 0);
     }
 
     // it will be easier to understand what entity class we want to create by specifying class of the class that we want to create.
@@ -48,15 +56,36 @@ public class EntityFactory {
         car.setCreateDate(new Date());
         car.setCarModel(session.load(CarModel.class, model.getCarModelId()));
 
-        Set<CarFeature> carFeatures = new HashSet<CarFeature>();
-        for(int featureId : model.getCarFeaturesIds())
-        {
-            carFeatures.add(session.load(CarFeature.class, featureId));
+        if(model.getCarFeaturesIds() != null) {
+            Set<CarFeature> carFeatures = new HashSet<CarFeature>();
+            for (int featureId : model.getCarFeaturesIds()) {
+                carFeatures.add(session.load(CarFeature.class, featureId));
+            }
+            car.setCarFeatures(carFeatures);
         }
-        car.setCarFeatures(carFeatures);
 
         return car;
+    }
 
+    public Demand create(Class<Demand> demandClass, DemandModel model)
+    {
+        Demand demand = new Demand();
+        demand.setUser(session.load(User.class, model.getUserId()));
+        demand.setDesiredDropDateTime(model.getDesiredEndDate());
+        demand.setDesiredStartDateTime(model.getDesiredStartTime());
+        demand.setDesiredPickupLocation(geometryFactory.createPoint(new Coordinate(model.getDesiredPickupLocationX(), model.getDesiredPickupLocationY())));
+        demand.setDesiredDropLocation(geometryFactory.createPoint(new Coordinate(model.getDesiredDropLocationX(), model.getDesiredDropLocationY())));
+
+        if(model.getDesiredCarFeatures() != null)
+        {
+            Set<CarFeature> carFeatures = new HashSet<CarFeature>();
+            for (CarFeatureModel f : model.getDesiredCarFeatures()) {
+                carFeatures.add(session.load(CarFeature.class, f.getId()));
+            }
+            demand.setDesiredCarFeatures(carFeatures);
+        }
+
+        return demand;
     }
 
 }

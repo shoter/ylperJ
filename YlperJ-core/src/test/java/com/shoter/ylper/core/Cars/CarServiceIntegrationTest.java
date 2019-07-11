@@ -42,6 +42,22 @@ public class CarServiceIntegrationTest extends IntegrationTest {
     }
 
     @Test
+    public void addCar_withoutFeatures_shouldAddCar_andGetFullCar_shouldReturnItToUs()
+    {
+        Car car = new Car();
+        car.setCarModel(session.load(CarModel.class, 1));
+        car.setCreateDate(new Date());
+
+        carService.addCar(car);
+
+        Car addedCar = carService.getFullCar(car.getId());
+
+        assertNotNull(addedCar);
+        assertEquals(car.getCarModel().getId(), addedCar.getCarModel().getId());
+        assertEquals(car.getCreateDate(), addedCar.getCreateDate());
+    }
+
+    @Test
     public void removeCar_shouldBeAbleTo_removeAddedCar()
     {
         Car car = new Car();

@@ -10,7 +10,7 @@
     </coordinates>
     <panel_attributes>User
 --
-Id: uBigInt
+Id: BigInt
 Username: string[50]
 GenderId: tinyInt
 Name : string[200]
@@ -29,7 +29,7 @@ bg=green</panel_attributes>
     </coordinates>
     <panel_attributes>Gender
 --
-Id: utinyInt
+Id: tinyInt
 Name: string[15]
 bg=green</panel_attributes>
     <additional_attributes/>
@@ -213,8 +213,8 @@ m1=1
     </coordinates>
     <panel_attributes>Booking
 --
-Id: uBigInt
-UserId: uBigInt
+Id: BigInt
+UserId: BigInt
 CarId: uBigInt
 StartDateTime: DateTime
 PickupPosition: Point
@@ -233,8 +233,8 @@ bg=yellow</panel_attributes>
     </coordinates>
     <panel_attributes>Demand
 --
-Id: uBigInt
-UserId: uBigInt
+Id: BigInt
+UserId: BigInt
 DesiredPickupLocation: Point
 DesiredStartDateTime: DateTime
 DesiredDropOffLocation: Point
@@ -305,7 +305,7 @@ m1=1
     </coordinates>
     <panel_attributes>CarLocationHistory
 --
-CarId: uBigInt
+CarId: BigInt
 DateTime: DateTime
 Location: Point</panel_attributes>
     <additional_attributes/>

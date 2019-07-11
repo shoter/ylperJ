@@ -93,9 +93,9 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
     @Autowired
-    public UserService userService(UserRepository userRepository)
+    public UserService userService(UserRepository userRepository, DemandRepository demandRepository, BookingRepository bookingRepository)
     {
-        return new UserServiceImpl(userRepository);
+        return new UserServiceImpl(userRepository,demandRepository, bookingRepository);
     }
 
     @Bean

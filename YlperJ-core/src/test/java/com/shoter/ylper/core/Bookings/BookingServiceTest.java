@@ -46,7 +46,7 @@ public class BookingServiceTest extends YlperTest {
         cal.set(Calendar.MONTH, 7);
         cal.set(Calendar.DAY_OF_MONTH, 3);
 
-        // TODO: Remove if there will be no tests using that
+        // TODO: remove if there will be no tests using that
         this.correctBooking = new Booking();
         correctBooking.setCar(carMock);
         correctBooking.setUser(userMock);

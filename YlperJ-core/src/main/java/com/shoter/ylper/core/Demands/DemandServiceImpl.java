@@ -4,6 +4,9 @@ import com.shoter.ylper.core.Results.MethodResult;
 import com.shoter.ylper.core.ServiceBase;
 import com.shoter.ylper.core.Users.UserRepository;
 
+import javax.persistence.NoResultException;
+import java.util.List;
+
 public class DemandServiceImpl extends ServiceBase<Demand> implements DemandService {
 
     private DemandRepository demandRepository;
@@ -47,7 +50,16 @@ public class DemandServiceImpl extends ServiceBase<Demand> implements DemandServ
         return new MethodResult();
     }
 
-    public void Remove(long id) {
+    public void remove(long id) {
+        demandRepository.remove(id);
+    }
 
+    public Demand get(long demandId) {
+        try {
+            return demandRepository.getDemand(demandId);
+        }
+        catch(NoResultException e) {
+            return null;
+        }
     }
 }

@@ -1,5 +1,7 @@
 package com.shoter.ylper.core.Users;
 
+import com.shoter.ylper.core.Bookings.BookingRepository;
+import com.shoter.ylper.core.Demands.DemandRepository;
 import com.shoter.ylper.core.Results.MethodResult;
 import org.hibernate.internal.util.StringHelper;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +19,8 @@ public class UserServiceTest{
     private User correctUser;
     private UserServiceImpl userService;
     private UserRepository userRepositoryMock;
+    private DemandRepository demandRepositoryMock;
+    private BookingRepository bookingRepositoryMock;
 
     @BeforeEach
     public void beforeEachTest() {
@@ -33,12 +37,14 @@ public class UserServiceTest{
         this.correctUser.setGender(someGender);
 
         this.userRepositoryMock = mock(UserRepository.class);
+        this.demandRepositoryMock = mock(DemandRepository.class);
+        this.bookingRepositoryMock = mock(BookingRepository.class);
 
         when(this.userRepositoryMock.userExists(anyString())).thenReturn(false);
         when(this.userRepositoryMock.hasAnyBookings(anyLong())).thenReturn(false);
         when(this.userRepositoryMock.hasAnyDemands(anyLong())).thenReturn(false);
 
-        this.userService = new UserServiceImpl(this.userRepositoryMock);
+        this.userService = new UserServiceImpl(this.userRepositoryMock, this.demandRepositoryMock, this.bookingRepositoryMock);
 
     }
 

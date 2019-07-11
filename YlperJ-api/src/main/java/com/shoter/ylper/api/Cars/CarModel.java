@@ -2,6 +2,7 @@ package com.shoter.ylper.api.Cars;
 
 import com.shoter.ylper.core.Cars.Car;
 import com.shoter.ylper.core.Cars.CarFeature;
+import com.shoter.ylper.core.Cars.CarLocationHistory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,23 +13,24 @@ public class CarModel {
     List<CarFeatureModel> carFeatures;
     Date createDate;
     CarModelModel carModel;
+    CarLocationModel location;
 
-    public CarModel()
-    {
 
-    }
-
-    public CarModel(Car car)
+    public CarModel(Car car, CarLocationHistory locationHistory)
     {
         id = car.getId();
         createDate = car.getCreateDate();
         carModel = new CarModelModel(car.getCarModel());
 
-        carFeatures = new ArrayList<CarFeatureModel>(car.getCarFeatures().size());
-        for (CarFeature f : car.getCarFeatures())
-        {
-            carFeatures.add(new CarFeatureModel(f));
+        if(car.getCarFeatures() != null) {
+            carFeatures = new ArrayList<CarFeatureModel>(car.getCarFeatures().size());
+            for (CarFeature f : car.getCarFeatures()) {
+                carFeatures.add(new CarFeatureModel(f));
+            }
         }
+
+        if(locationHistory != null)
+        location = new CarLocationModel(locationHistory);
     }
 
     public long getId() {
@@ -61,5 +63,13 @@ public class CarModel {
 
     public void setCarModel(CarModelModel carModel) {
         this.carModel = carModel;
+    }
+
+    public CarLocationModel getLocation() {
+        return location;
+    }
+
+    public void setLocation(CarLocationModel location) {
+        this.location = location;
     }
 }

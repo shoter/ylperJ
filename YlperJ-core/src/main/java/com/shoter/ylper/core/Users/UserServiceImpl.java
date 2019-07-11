@@ -1,6 +1,10 @@
 package com.shoter.ylper.core.Users;
 
+import com.shoter.ylper.core.Bookings.Booking;
+import com.shoter.ylper.core.Bookings.BookingRepository;
 import com.shoter.ylper.core.Common.StringHelper;
+import com.shoter.ylper.core.Demands.Demand;
+import com.shoter.ylper.core.Demands.DemandRepository;
 import com.shoter.ylper.core.Results.MethodResult;
 import com.shoter.ylper.core.ServiceBase;
 import org.locationtech.jts.geom.Coordinate;
@@ -11,9 +15,13 @@ import java.util.List;
 public class UserServiceImpl extends ServiceBase<User> implements UserService {
 
     private UserRepository userRepository;
+    private DemandRepository demandRepository;
+    private BookingRepository bookingRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, DemandRepository demandRepository, BookingRepository bookingRepository) {
         this.userRepository = userRepository;
+        this.demandRepository = demandRepository;
+        this.bookingRepository = bookingRepository;
     }
 
     public MethodResult canAddUser(final User user)
@@ -53,6 +61,10 @@ public class UserServiceImpl extends ServiceBase<User> implements UserService {
         return userRepository.getUser(userId);
     }
 
+    public boolean exists(long userId) {
+        return getUser(userId) != null;
+    }
+
     public MethodResult canRemoveUser(User user) {
 
         if(user == null || userRepository.getUser(user.getId()) == null)
@@ -79,5 +91,13 @@ public class UserServiceImpl extends ServiceBase<User> implements UserService {
 
     public List<User> getUsers() {
         return userRepository.getAll();
+    }
+
+    public List<Demand> getDemands(long userId) {
+        return demandRepository.getDemandsForUser(userId);
+    }
+
+    public List<Booking> getBookings(long userId) {
+        return bookingRepository.getBookingsForUser(userId);
     }
 }

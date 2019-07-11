@@ -13,7 +13,7 @@ import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DemandRepositoryIntegrationTest extends IntegrationTest {
+public class DemandServiceIntegrationTests extends IntegrationTest {
     // We should have car and user in test data.
     private final long testUserId = 1;
 

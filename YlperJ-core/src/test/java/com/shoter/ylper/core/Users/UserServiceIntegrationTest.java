@@ -1,8 +1,10 @@
 package com.shoter.ylper.core.Users;
 
 import com.shoter.ylper.core.Bookings.Booking;
+import com.shoter.ylper.core.Bookings.BookingRepositoryImpl;
 import com.shoter.ylper.core.Cars.Car;
 import com.shoter.ylper.core.Demands.Demand;
+import com.shoter.ylper.core.Demands.DemandRepositoryImpl;
 import com.shoter.ylper.core.IntegrationTest;
 import com.shoter.ylper.core.Results.MethodResult;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +26,7 @@ public class UserServiceIntegrationTest extends IntegrationTest {
     public void beforeEachTest() {
         super.beforeEachTest();
 
-        userService = new UserServiceImpl(new UserRepositoryImpl(session));
+        userService = new UserServiceImpl(new UserRepositoryImpl(session), new DemandRepositoryImpl(session), new BookingRepositoryImpl(session));
         this.correctUser = new User();
 
         correctUser.setId(1);

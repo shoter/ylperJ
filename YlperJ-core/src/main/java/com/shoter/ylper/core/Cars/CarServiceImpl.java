@@ -7,6 +7,7 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.PrecisionModel;
 
+import javax.persistence.NoResultException;
 import javax.validation.ConstraintViolation;
 import java.util.List;
 import java.util.Set;
@@ -62,7 +63,13 @@ public class CarServiceImpl extends ServiceBase implements CarService {
     }
 
     public Car getFullCar(long id) {
-        return carRepository.getFullCar(id);
+        try {
+            return carRepository.getFullCar(id);
+        }
+        catch(NoResultException e)
+        {
+            return null;
+        }
     }
 
     public MethodResult canInsertNewCarPosition(long carId, double x, double y) {

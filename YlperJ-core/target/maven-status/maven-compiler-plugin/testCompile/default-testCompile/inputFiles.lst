@@ -1,5 +1,5 @@
 /home/damian/Programming/Java/ylperJ/YlperJ-core/src/test/java/com/shoter/ylper/core/Users/GenderTest.java
-/home/damian/Programming/Java/ylperJ/YlperJ-core/src/test/java/com/shoter/ylper/core/Demands/DemandRepositoryIntegrationTest.java
+/home/damian/Programming/Java/ylperJ/YlperJ-core/src/test/java/com/shoter/ylper/core/Demands/DemandServiceIntegrationTests.java
 /home/damian/Programming/Java/ylperJ/YlperJ-core/src/test/java/com/shoter/ylper/core/Bookings/BookingServiceTest.java
 /home/damian/Programming/Java/ylperJ/YlperJ-core/src/test/java/com/shoter/ylper/core/Cars/CarServiceIntegrationTest.java
 /home/damian/Programming/Java/ylperJ/YlperJ-core/src/test/java/com/shoter/ylper/core/Users/UserServiceIntegrationTest.java
