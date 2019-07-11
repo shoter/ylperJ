@@ -1,5 +1,6 @@
-package com.shoter.ylper.api.Cars;
+package com.shoter.ylper.api.Bookings;
 
+import com.shoter.ylper.api.Cars.CarFeatureModel;
 import com.shoter.ylper.core.Cars.CarFeature;
 import com.shoter.ylper.core.Demands.Demand;
 

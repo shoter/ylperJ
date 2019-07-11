@@ -1,5 +1,6 @@
 package com.shoter.ylper.core.Demands;
 
+import com.shoter.ylper.core.Cars.CarFeature;
 import com.shoter.ylper.core.Demands.*;
 import com.shoter.ylper.core.IntegrationTest;
 import com.shoter.ylper.core.Results.MethodResult;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
 
-import java.util.Calendar;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,6 +49,37 @@ public class DemandServiceIntegrationTests extends IntegrationTest {
     {
         MethodResult result = demandService.canAdd(correctDemand);
         assertTrue(result.isSuccess());
+    }
+
+    @Test
+    public void add_shouldAlsoAddFeatures()
+    {
+        Set<CarFeature> features = new HashSet<CarFeature>();
+        features.add(session.load(CarFeature.class, 1));
+        features.add(session.load(CarFeature.class, 4));
+
+        correctDemand.setDesiredCarFeatures(features);
+
+        demandService.add(correctDemand);
+
+        List<CarFeature> addedFeatures = demandService.getFeaturesForDemand(correctDemand.getId());
+
+        List<Integer> featuresIds = new ArrayList<Integer>();
+        for(CarFeature f : addedFeatures)
+            featuresIds.add(f.getId());
+
+        assertTrue(featuresIds.contains(1));
+        assertTrue(featuresIds.contains(4));
+    }
+
+    @Test
+    public void getFeaturesForDemand_shouldHandleNoFeatureSituation()
+    {
+        demandService.add(correctDemand);
+
+        List<CarFeature> addedFeatures = demandService.getFeaturesForDemand(correctDemand.getId());
+
+        assertEquals(0, addedFeatures.size());
     }
 
     @Test void add_smokeTest_whenCorrectDemand()

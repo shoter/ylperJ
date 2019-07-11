@@ -39,7 +39,7 @@ public class Demand {
     @NotNull
     private Point desiredDropLocation;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="DemandFeatures",
             joinColumns = @JoinColumn( name = "DemandId"),

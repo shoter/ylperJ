@@ -1,6 +1,7 @@
 package com.shoter.ylper.core.Demands;
 
 import com.shoter.ylper.core.Cars.Car;
+import com.shoter.ylper.core.Cars.CarFeature;
 import com.shoter.ylper.core.RepositoryBase;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -37,9 +38,18 @@ public class DemandRepositoryImpl extends RepositoryBase<Demand> implements  Dem
     public List<Demand> getDemandsForUser(long userId) {
         Query query = session
                 .createQuery("Select demand from Demand demand " +
-                        "LEFT JOIN FETCH demand.desiredCarFeatures " +
                         "WHERE demand.user.id=:userId", Demand.class);
         query.setParameter("userId", userId);
+
+        return query.list();
+    }
+
+    public List<CarFeature> getFeaturesForDemand(long demandId) {
+        Query query = session
+                .createQuery("Select feature from Demand demand " +
+                        "JOIN demand.desiredCarFeatures feature " +
+                        "WHERE demand.id=:demandId", CarFeature.class);
+        query.setParameter("demandId", demandId);
 
         return query.list();
     }

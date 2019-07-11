@@ -1,7 +1,7 @@
 package com.shoter.ylper.api.Users;
 
-import com.shoter.ylper.api.Cars.BookingModel;
-import com.shoter.ylper.api.Cars.DemandModel;
+import com.shoter.ylper.api.Bookings.BookingModel;
+import com.shoter.ylper.api.Bookings.DemandModel;
 import com.shoter.ylper.api.Common.ControllerBase;
 import com.shoter.ylper.api.Common.EntityFactory;
 import com.shoter.ylper.api.Common.ErrorResponse;

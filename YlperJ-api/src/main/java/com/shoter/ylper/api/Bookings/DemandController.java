@@ -1,4 +1,4 @@
-package com.shoter.ylper.api.Cars;
+package com.shoter.ylper.api.Bookings;
 
 import com.shoter.ylper.api.Common.ControllerBase;
 import com.shoter.ylper.api.Common.EntityFactory;

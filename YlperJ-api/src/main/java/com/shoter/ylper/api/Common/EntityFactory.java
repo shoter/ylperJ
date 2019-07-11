@@ -2,8 +2,7 @@ package com.shoter.ylper.api.Common;
 
 import com.shoter.ylper.api.Cars.CarCreateModel;
 import com.shoter.ylper.api.Cars.CarFeatureModel;
-import com.shoter.ylper.api.Cars.CarShortModel;
-import com.shoter.ylper.api.Cars.DemandModel;
+import com.shoter.ylper.api.Bookings.DemandModel;
 import com.shoter.ylper.api.Users.Models.UserModel;
 import com.shoter.ylper.core.Cars.Car;
 import com.shoter.ylper.core.Cars.CarFeature;

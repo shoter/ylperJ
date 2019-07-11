@@ -1,5 +1,6 @@
 package com.shoter.ylper.core.Demands;
 
+import com.shoter.ylper.core.Cars.CarFeature;
 import com.shoter.ylper.core.Results.MethodResult;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface DemandService {
     void remove(long id);
 
     Demand get(long demandId);
+    List<CarFeature> getFeaturesForDemand(long demandId);
 }

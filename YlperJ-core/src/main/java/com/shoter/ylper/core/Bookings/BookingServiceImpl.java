@@ -1,5 +1,6 @@
 package com.shoter.ylper.core.Bookings;
 
+import com.shoter.ylper.core.Cars.CarErrors;
 import com.shoter.ylper.core.Cars.CarRepository;
 import com.shoter.ylper.core.Results.MethodResult;
 import com.shoter.ylper.core.ServiceBase;
@@ -39,6 +40,12 @@ public class BookingServiceImpl extends ServiceBase<Booking> implements BookingS
         {
             result.addError(BookingErrors.dropTimeBeforeStartTime);
         }
+
+        if(bookingExistsInGivenTimeForCar(booking.getId(), booking.getStartDateTime(), booking.getEndDateTime()))
+        {
+            result.addError(BookingErrors.carIsAlreadyBookedInThisTime);
+        }
+
 
         return result;
     }
@@ -97,5 +104,13 @@ public class BookingServiceImpl extends ServiceBase<Booking> implements BookingS
         booking.setDropPosition(point);
 
         bookingRepository.update(booking);
+    }
+
+    public boolean bookingExistsInGivenTimeForCar(long carId, Date time) {
+        return bookingRepository.bookingExistsInGivenTime(carId, time);
+    }
+
+    public boolean bookingExistsInGivenTimeForCar(long carId, Date startTime, Date endTime) {
+        return bookingRepository.bookingExistsInGivenTime(carId, startTime, endTime);
     }
 }

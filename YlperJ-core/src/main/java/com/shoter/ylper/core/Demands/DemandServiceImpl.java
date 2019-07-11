@@ -1,5 +1,6 @@
 package com.shoter.ylper.core.Demands;
 
+import com.shoter.ylper.core.Cars.CarFeature;
 import com.shoter.ylper.core.Results.MethodResult;
 import com.shoter.ylper.core.ServiceBase;
 import com.shoter.ylper.core.Users.UserRepository;
@@ -61,5 +62,9 @@ public class DemandServiceImpl extends ServiceBase<Demand> implements DemandServ
         catch(NoResultException e) {
             return null;
         }
+    }
+
+    public List<CarFeature> getFeaturesForDemand(long demandId) {
+        return demandRepository.getFeaturesForDemand(demandId);
     }
 }
