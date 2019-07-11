@@ -54,8 +54,8 @@ public class CarServiceImpl extends ServiceBase implements CarService {
         return result;
     }
 
-    public void removeCar(final long carId) {
-        carRepository.remove(carId);
+    public void removeCar( Car car) {
+        carRepository.remove(car.getId());
     }
 
     public Car getCar(final long id) {

@@ -67,9 +67,65 @@ User cannot have bookings or demands to be able to be removed.
 
 ### /cars
 
+#### Get /
+
+Returns all cars
+
+#### Get /[integer]
+
+[integer] - car id
+
+Returns detailed info on given car
+
+#### Post /
+
+Request Body:
+```
+    carModelId | Not null
+    carFeatureIds | collection[integer] nullable
+    x | decimal - initial position of car
+    y | decimal - initial position of car
+```
+
+Creates new car and returns detailed info on the car with id in the response
+
+#### POST /[integer]/locations
+
+[integer] - car id
+
+Posts new location for the car
+
+Request Body
+```
+    x | position x
+    y | position y
+```
+
+#### Delete /[integer]
+
+[integer] - car id
+
+Removed car id if constraints will be met. Car cannot have any bookings or demands to be able to remove it.
+
 ### /bookings
 
 ### /demands
+
+### GET /Engines
+
+Return all engines
+
+### GET /CarModels
+
+Returns all car models
+
+### GET /CarCompanies
+
+Return all car companies
+
+### GET /LuxuryCategories
+
+Return all car luxury categories
 
 ## New knowledge
 

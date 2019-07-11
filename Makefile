@@ -3,6 +3,6 @@ build-core:
 
 test: build-core
 	./test.sh
-	mvn -f YlperJ-core/pom.xml test
+	#mvn -f YlperJ-core/pom.xml test
 
 

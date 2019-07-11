@@ -26,7 +26,8 @@ public class CarRepositoryImpl extends RepositoryBase implements CarRepository {
     }
 
     public boolean exist(long carId) {
-        return session.get(Car.class, carId) != null;
+        Car car = session.get(Car.class, carId);
+        return car != null;
     }
 
     public Car getCar(long carId) {
@@ -34,7 +35,10 @@ public class CarRepositoryImpl extends RepositoryBase implements CarRepository {
     }
 
     public void remove(long carId) {
-         session.remove(session.load(Car.class, carId));
+        session.beginTransaction();
+        session.remove(session.load(Car.class, carId));
+        session.flush();
+        session.getTransaction().commit();
     }
 
     public CarLocationHistory insertNewPosition(long carId, Point point) {

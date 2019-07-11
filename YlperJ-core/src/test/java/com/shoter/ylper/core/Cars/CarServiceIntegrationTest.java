@@ -18,12 +18,19 @@ import java.util.Set;
 public class CarServiceIntegrationTest extends IntegrationTest {
 
     private CarService carService;
+    private Car correctCar;
 
     @Override
     @BeforeEach
     public void beforeEachTest() {
         super.beforeEachTest();
         this.carService = new CarServiceImpl(new CarRepositoryImpl(session));
+
+        this.correctCar = new Car();
+        this.correctCar.setCarModel(session.load(CarModel.class, 1));
+        this.correctCar.setCreateDate(new Date());
+        Set<CarFeature> features = new HashSet<CarFeature>();
+        features.add(session.load(CarFeature.class, 2));
     }
 
     @Test
@@ -39,6 +46,19 @@ public class CarServiceIntegrationTest extends IntegrationTest {
 
         assertEquals(car.getCarModel().getId(), addedCar.getCarModel().getId());
         assertEquals(car.getCreateDate(), addedCar.getCreateDate());
+    }
+
+    @Test
+    public void deleteCar_shouldDeleteCar()
+    {
+        carService.addCar(this.correctCar);
+        carService.insertNewCarPosition(this.correctCar.getId(), 5, 12);
+
+        long id = this.correctCar.getId();
+        carService.removeCar(this.correctCar);
+
+        assertFalse(carService.exists(id));
+
     }
 
     @Test
@@ -66,7 +86,7 @@ public class CarServiceIntegrationTest extends IntegrationTest {
 
         carService.addCar(car);
         long carId = car.getId();
-        carService.removeCar(carId);
+        carService.removeCar(car);
 
         assertNull(carService.getCar(carId));
     }

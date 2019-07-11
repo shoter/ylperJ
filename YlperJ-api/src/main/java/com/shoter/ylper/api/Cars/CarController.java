@@ -116,7 +116,7 @@ public class CarController extends ControllerBase {
             return response(404, null);
         }
 
-        carService.removeCar(carId);
+        carService.removeCar(carService.getCar(carId));
 
         return response(200, null);
     }

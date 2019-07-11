@@ -12,7 +12,7 @@ public interface CarService  {
     boolean exists(long carId);
 
     MethodResult canRemoveCar(long carId);
-    void removeCar(long carId);
+    void removeCar(Car car);
 
     Car getCar(long id);
     Car getFullCar(long id);
