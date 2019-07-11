@@ -8,7 +8,7 @@ I do not think build scripts will work on Windows.
 
 ## How to run
 
-### make test
+### `make test` in main directory of repo
 
 It will:
 
@@ -18,6 +18,58 @@ It will:
 * Run Integration tests against db
 * (not done - I wanted to do that) Run acceptance test against running api container - probably I would use Python or Java to do that.
 * You can use my requests collections from Postman to test requests against API. They are in ./postman
+
+## Api documentation
+
+### /users
+
+#### GET /
+
+Returns all users
+
+#### Get /[integer]
+
+[integer] - user id
+
+Ger detailed information about the user
+
+#### Get /[integer]/demands
+
+[integer] - user id
+
+Get demands for given user
+
+#### Get /[integer]/bookings
+
+[integer] - user id
+
+Get bookings for given user
+
+#### Post /
+
+Request Body:
+```
+    username | NotBlank + max 50 chars - unique among users
+    name | NotBlank + max 200 chars
+    birthday | Not Null - java timestamp
+    gender | Not Null - gender id (1 - m, 2 - f, 3- other)
+```
+
+If successfull it will return detailed info with id for newly created user
+
+#### Delete /[integer]
+
+[integer] - user id
+
+Removes given user from database if constraints will be met.
+
+User cannot have bookings or demands to be able to be removed.
+
+### /cars
+
+### /bookings
+
+### /demands
 
 ## New knowledge
 
@@ -29,6 +81,7 @@ Technologies that I had first contact with are:
 * JUnit
 * Hibernate
 * Multi-Module projects in Java
+* Docker
 
 This is also one of the reason why the exercise took me so long. I just was not used to all those techs and some things took longer than they should.
 It is worth nothing right now that I know those technologies and process of my integration into company will be easier. This is my act of showing you
