@@ -41,11 +41,10 @@ public class BookingServiceImpl extends ServiceBase<Booking> implements BookingS
             result.addError(BookingErrors.dropTimeBeforeStartTime);
         }
 
-        if(bookingExistsInGivenTimeForCar(booking.getId(), booking.getStartDateTime(), booking.getEndDateTime()))
+        if(bookingExistsInGivenTimeForCar(booking.getCar().getId(),  booking.getStartDateTime(), booking.getEndDateTime()))
         {
             result.addError(BookingErrors.carIsAlreadyBookedInThisTime);
         }
-
 
         return result;
     }

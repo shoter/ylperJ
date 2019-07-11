@@ -158,4 +158,17 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
 
         assertFalse(bookingService.bookingExistsInGivenTimeForCar(1, startTime, endTime));
     }
+
+    @Test
+    public void canAdd_shouldReturnError_whenTimeIsAlreadyBooked() throws ParseException {
+        Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 16:00");
+        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 18:00");
+
+        this.correctBooking.setStartDateTime(startTime);
+        this.correctBooking.setEndDateTime(endTime);
+        this.correctBooking.setCar(session.load(Car.class,(long)1));
+
+        assertTrue(bookingService.canAdd(this.correctBooking).hasError(BookingErrors.carIsAlreadyBookedInThisTime));
+
+    }
 }

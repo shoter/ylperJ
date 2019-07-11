@@ -6,5 +6,5 @@ CREATE TABLE CarLocationHistories (
     Location POINT NOT NULL,
 
     FOREIGN KEY(CarId) REFERENCES Cars(Id) ON DELETE CASCADE,
-    Index(CarId, DateTime)
+    UNIQUE Index(CarId, DateTime)
 )

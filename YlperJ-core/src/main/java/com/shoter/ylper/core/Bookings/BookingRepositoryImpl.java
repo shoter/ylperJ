@@ -40,6 +40,7 @@ public class BookingRepositoryImpl extends RepositoryBase<Booking> implements Bo
 
         query.setParameter("carId", carId);
         query.setParameter("time", time);
+        query.setMaxResults(1);
 
         return query.uniqueResult() != null;
     }
@@ -53,6 +54,7 @@ public class BookingRepositoryImpl extends RepositoryBase<Booking> implements Bo
         query.setParameter("carId", carId);
         query.setParameter("startTime", startTime);
         query.setParameter("endTime", endTime);
+        query.setMaxResults(1);
 
         return query.uniqueResult() != null;
     }
