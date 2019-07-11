@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.shoter.ylper.core.Bookings.BookingServiceIntegrationTest
 -------------------------------------------------------------------------------
-Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec - in com.shoter.ylper.core.Bookings.BookingServiceIntegrationTest
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.465 sec - in com.shoter.ylper.core.Bookings.BookingServiceIntegrationTest

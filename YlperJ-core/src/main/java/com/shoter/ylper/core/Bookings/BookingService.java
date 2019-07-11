@@ -8,6 +8,7 @@ import java.util.Date;
 public interface BookingService {
     MethodResult canAdd(Booking booking);
     void add(Booking booking);
+    Booking getBooking(long id);
 
     MethodResult canRemove(long bookingId);
     void remove(long bookingId);

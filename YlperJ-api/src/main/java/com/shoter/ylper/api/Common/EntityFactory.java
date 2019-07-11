@@ -1,9 +1,11 @@
 package com.shoter.ylper.api.Common;
 
+import com.shoter.ylper.api.Bookings.BookingModel;
 import com.shoter.ylper.api.Cars.CarCreateModel;
 import com.shoter.ylper.api.Cars.CarFeatureModel;
 import com.shoter.ylper.api.Bookings.DemandModel;
 import com.shoter.ylper.api.Users.Models.UserModel;
+import com.shoter.ylper.core.Bookings.Booking;
 import com.shoter.ylper.core.Cars.Car;
 import com.shoter.ylper.core.Cars.CarFeature;
 import com.shoter.ylper.core.Cars.CarModel;
@@ -17,6 +19,7 @@ import org.locationtech.jts.geom.PrecisionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.awt.print.Book;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,6 +37,7 @@ public class EntityFactory {
     }
 
     // it will be easier to understand what entity class we want to create by specifying class of the class that we want to create.
+    // It shoud also offer better code-completion experience.
     public User create(Class<User> userClass, UserModel model)
     {
         Gender gender = session.load(Gender.class, model.getGender());
@@ -85,6 +89,19 @@ public class EntityFactory {
         }
 
         return demand;
+    }
+
+    public Booking create(Class<Booking> bookingClass, BookingModel model)
+    {
+        Booking booking = new Booking();
+        booking.setPickupPosition(geometryFactory.createPoint(new Coordinate(model.getStartPositionX(), model.getStartPositionY())));
+        booking.setDropPosition(geometryFactory.createPoint(new Coordinate(model.getEndPositionX(), model.getEndPositionY())));
+        booking.setUser(session.load(User.class, model.getUserId()));
+        booking.setCar(session.load(Car.class, model.getCarId()));
+        booking.setStartDateTime(model.getStartDateTime());
+        booking.setEndDateTime(model.getEndDateTime());
+
+        return booking;
     }
 
 }

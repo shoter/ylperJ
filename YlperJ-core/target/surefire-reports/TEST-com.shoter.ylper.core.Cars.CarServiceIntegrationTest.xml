@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.shoter.ylper.core.Cars.CarServiceIntegrationTest" time="0" tests="0" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.shoter.ylper.core.Cars.CarServiceIntegrationTest" time="3.607" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
@@ -40,7 +40,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/usr/lib/jvm/java-8-openjdk-amd64/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f YlperJ-core/pom.xml install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f YlperJ-core/pom.xml test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -57,4 +57,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
+  <testcase name="canRemoveCar_shouldReturnFalse_ifThereIsABooking" classname="com.shoter.ylper.core.Cars.CarServiceIntegrationTest" time="0.393"/>
+  <testcase name="getLastCarPosition_shouldReturnLastPosition_thatHasBeenAddedToDatabase" classname="com.shoter.ylper.core.Cars.CarServiceIntegrationTest" time="1.51"/>
+  <testcase name="canRemoveCar_shouldReturnFalse_ifThereIsNoCar" classname="com.shoter.ylper.core.Cars.CarServiceIntegrationTest" time="0.409"/>
+  <testcase name="removeCar_shouldBeAbleTo_removeAddedCar" classname="com.shoter.ylper.core.Cars.CarServiceIntegrationTest" time="0.444"/>
+  <testcase name="addCar_shouldAddCar_andGetCar_shouldReturnItToUs" classname="com.shoter.ylper.core.Cars.CarServiceIntegrationTest" time="0.287"/>
+  <testcase name="addCar_withoutFeatures_shouldAddCar_andGetFullCar_shouldReturnItToUs" classname="com.shoter.ylper.core.Cars.CarServiceIntegrationTest" time="0.281"/>
+  <testcase name="getFullCar_shouldNotThrowException" classname="com.shoter.ylper.core.Cars.CarServiceIntegrationTest" time="0.269"/>
 </testsuite>

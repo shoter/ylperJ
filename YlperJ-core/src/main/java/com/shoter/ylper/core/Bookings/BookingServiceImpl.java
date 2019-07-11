@@ -54,6 +54,10 @@ public class BookingServiceImpl extends ServiceBase<Booking> implements BookingS
         bookingRepository.add(booking);
     }
 
+    public Booking getBooking(long id) {
+        return bookingRepository.get(id);
+    }
+
     public MethodResult canRemove(long bookingId) {
         if(bookingRepository.exists(bookingId) == false)
         {

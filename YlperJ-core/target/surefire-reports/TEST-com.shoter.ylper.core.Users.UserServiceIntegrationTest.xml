@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.shoter.ylper.core.Users.UserServiceIntegrationTest" time="0" tests="0" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.shoter.ylper.core.Users.UserServiceIntegrationTest" time="2.46" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
@@ -40,7 +40,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/usr/lib/jvm/java-8-openjdk-amd64/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f YlperJ-core/pom.xml install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f YlperJ-core/pom.xml test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -57,4 +57,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
+  <testcase name="canRemoveUser_shouldReturnError_whenUserHasBookings" classname="com.shoter.ylper.core.Users.UserServiceIntegrationTest" time="0.306"/>
+  <testcase name="getUser_thatDoesNotExist_shouldReturnNull" classname="com.shoter.ylper.core.Users.UserServiceIntegrationTest" time="0.296"/>
+  <testcase name="canRemoveUser_shouldReturnErroor_whenUserIsNull" classname="com.shoter.ylper.core.Users.UserServiceIntegrationTest" time="0.266"/>
+  <testcase name="getUser_shouldReturnUser_afterAddUser" classname="com.shoter.ylper.core.Users.UserServiceIntegrationTest" time="0.519"/>
+  <testcase name="removeUser_shouldRemoveCorrectUser" classname="com.shoter.ylper.core.Users.UserServiceIntegrationTest" time="0.355"/>
+  <testcase name="canRemoveUser_shouldReturnSuccess_forCorrectUsersWithoutBookingsNorDemands" classname="com.shoter.ylper.core.Users.UserServiceIntegrationTest" time="0.291"/>
+  <testcase name="canRemoveUser_shouldReturnError_whenUserHasDemands" classname="com.shoter.ylper.core.Users.UserServiceIntegrationTest" time="0.255"/>
+  <testcase name="canRemoveUser_shouldReturnErroor_whenUserDoesNotExist" classname="com.shoter.ylper.core.Users.UserServiceIntegrationTest" time="0.163"/>
 </testsuite>
