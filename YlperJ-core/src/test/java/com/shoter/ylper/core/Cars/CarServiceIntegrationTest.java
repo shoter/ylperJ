@@ -55,7 +55,7 @@ public class CarServiceIntegrationTest extends IntegrationTest {
         carService.insertNewCarPosition(this.correctCar.getId(), 5, 12);
 
         long id = this.correctCar.getId();
-        carService.removeCar(session.load(Car.class, (long)10));
+        carService.removeCar(this.correctCar);
 
         assertFalse(carService.exists(id));
 

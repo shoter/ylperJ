@@ -18,7 +18,7 @@ public class Car {
     @Column(name = "Id")
     private long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CarModelId")
     @NotNull
     private CarModel carModel;
@@ -27,7 +27,7 @@ public class Car {
     @NotNull
     private Date createDate;
 
-    @OneToMany(cascade = {CascadeType.MERGE}, orphanRemoval = true)
+    @OneToMany(cascade = PERSIST)
     @JoinTable(
             name="CarAssignedFeatures",
             joinColumns = @JoinColumn( name = "CarId"),
@@ -35,12 +35,10 @@ public class Car {
     )
     private Set<CarFeature> carFeatures;
 
-    @OneToMany(orphanRemoval = true, cascade = {PERSIST, MERGE, REMOVE})
-    @JoinColumn(name = "CarId")
+    @OneToMany(cascade = PERSIST, mappedBy = "carLocationHistoryPK.carId")
     private Set<CarLocationHistory> carLocationHistories;
 
-    @OneToMany
-    @JoinColumn(name = "CarId")
+    @OneToMany(cascade = {PERSIST}, mappedBy = "car")
     private Set<Booking> carBookings;
 
     public long getId() {

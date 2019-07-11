@@ -26,12 +26,11 @@ public class IntegrationTest extends YlperTest {
         try {
             sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
             session = sessionFactory.openSession();
-
         }
         catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
             // so destroy it manually.
-            StandardServiceRegistryBuilder.destroy( registry );
+            StandardServiceRegistryBuilder.destroy(registry);
         }
     }
 

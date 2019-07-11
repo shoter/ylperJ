@@ -2,6 +2,7 @@ package com.shoter.ylper.core.Bookings;
 
 import com.shoter.ylper.core.Cars.Car;
 import com.shoter.ylper.core.Users.User;
+import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.annotations.Type;
 import org.locationtech.jts.geom.Point;
 
@@ -19,12 +20,12 @@ public class Booking {
 
     @JoinColumn(name = "UserId", nullable = false)
     @NotNull
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
     @JoinColumn(name = "CarId", nullable = false)
     @NotNull
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Car car;
 
     @Column(name = "StartDateTime", nullable = false)

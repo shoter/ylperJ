@@ -34,11 +34,9 @@ public class User {
     @JoinColumn(name = "GenderId")
     @NotNull
     private Gender gender;
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "UserId")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private Set<Booking> bookings;
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "UserId")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private Set<Booking> demands;
 
 

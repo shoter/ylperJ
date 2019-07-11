@@ -29,7 +29,6 @@ public class UserServiceIntegrationTest extends IntegrationTest {
         userService = new UserServiceImpl(new UserRepositoryImpl(session), new DemandRepositoryImpl(session), new BookingRepositoryImpl(session));
         this.correctUser = new User();
 
-        correctUser.setId(1);
         correctUser.setCreateDate(new Date());
         correctUser.setBirthDay(new Date());
         correctUser.setName("alladin");
@@ -82,7 +81,8 @@ public class UserServiceIntegrationTest extends IntegrationTest {
         booking.setDropPosition(geometryFactory.createPoint(new Coordinate(3,2)));
 
         session.beginTransaction();
-        session.save(booking);
+        session.persist(booking);
+        session.flush();
         session.getTransaction().commit();
 
         MethodResult result = userService.canRemoveUser(correctUser);

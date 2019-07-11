@@ -21,7 +21,8 @@ public class RepositoryBase<TEntity> implements Repository<TEntity>{
     public void add(TEntity entity)
     {
         session.beginTransaction();
-        session.save(entity);
+        session.persist(entity);
+        session.flush();
         session.getTransaction().commit();
     }
 
