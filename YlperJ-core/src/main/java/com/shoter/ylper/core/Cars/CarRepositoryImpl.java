@@ -36,8 +36,7 @@ public class CarRepositoryImpl extends RepositoryBase implements CarRepository {
 
     public void remove(long carId) {
         session.beginTransaction();
-        session.remove(session.load(Car.class, carId));
-        session.flush();
+        session.delete(session.load(Car.class, carId));
         session.getTransaction().commit();
     }
 

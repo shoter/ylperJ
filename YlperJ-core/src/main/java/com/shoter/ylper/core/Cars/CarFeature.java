@@ -32,4 +32,19 @@ public class CarFeature {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public int hashCode() {
+        return new Integer(id).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof CarFeature)
+        {
+            return ((CarFeature)o).id == this.id;
+        }
+
+        return false;
+    }
 }

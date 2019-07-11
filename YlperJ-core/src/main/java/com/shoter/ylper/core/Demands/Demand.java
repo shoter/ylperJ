@@ -102,4 +102,14 @@ public class Demand {
     public void setDesiredCarFeatures(Set<CarFeature> desiredCarFeatures) {
         this.desiredCarFeatures = desiredCarFeatures;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Demand)
+        {
+            return ((Demand)o).id == this.id;
+        }
+
+        return false;
+    }
 }

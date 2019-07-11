@@ -34,4 +34,19 @@ public class CarLuxuryCategory {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof CarLuxuryCategory)
+        {
+            return ((CarLuxuryCategory)o).id == this.id;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return new Byte(id).hashCode();
+    }
 }

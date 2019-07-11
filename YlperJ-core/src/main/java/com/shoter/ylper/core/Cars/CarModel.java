@@ -84,4 +84,19 @@ public class CarModel {
     public void setFuelConsumption(BigDecimal fuelConsumption) {
         this.fuelConsumption = fuelConsumption;
     }
+
+    @Override
+    public int hashCode() {
+        return new Integer(id).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof CarModel)
+        {
+            return ((CarModel)o).id == id;
+        }
+
+        return false;
+    }
 }

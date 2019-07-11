@@ -31,4 +31,19 @@ public class Gender {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Gender)
+        {
+            return ((Gender)o).id == this.id;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return new Long(id).hashCode();
+    }
 }

@@ -33,4 +33,17 @@ public class CarLocationHistory {
     public void setCarLocationHistoryPK(CarLocationHistoryId carLocationHistoryPK) {
         this.carLocationHistoryPK = carLocationHistoryPK;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof  CarLocationHistory) {
+            return ((CarLocationHistory)o).carLocationHistoryPK.equals(this.carLocationHistoryPK);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return carLocationHistoryPK.hashCode();
+    }
 }

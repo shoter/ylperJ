@@ -41,4 +41,19 @@ public class Engine {
     public void setPower(int power) {
         this.power = power;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Engine)
+        {
+            return ((Engine)o).id == this.id;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return new Integer(id).hashCode();
+    }
 }

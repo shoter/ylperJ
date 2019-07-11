@@ -100,4 +100,18 @@ public class User {
     public void setBookings(Set<Booking> bookings) {
         this.bookings = bookings;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof User)
+        {
+            return ((User)o).getId() == this.getId();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return new Long(getId()).hashCode();
+    }
 }

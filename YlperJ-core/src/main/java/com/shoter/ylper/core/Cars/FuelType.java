@@ -31,4 +31,19 @@ public class FuelType {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public int hashCode() {
+        return new Byte(id).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof FuelType)
+        {
+            return ((FuelType)o).id == this.id;
+        }
+
+        return false;
+    }
 }

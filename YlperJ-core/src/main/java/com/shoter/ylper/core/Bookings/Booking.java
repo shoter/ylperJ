@@ -98,4 +98,19 @@ public class Booking {
     public void setDropPosition(Point dropPosition) {
         this.dropPosition = dropPosition;
     }
+
+    @Override
+    public int hashCode() {
+        return new Long(id).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Booking)
+        {
+            return ((Booking)o).id == this.id;
+        }
+
+        return false;
+    }
 }

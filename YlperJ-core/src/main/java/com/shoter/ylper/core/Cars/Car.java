@@ -1,11 +1,14 @@
 package com.shoter.ylper.core.Cars;
 
 import com.shoter.ylper.core.Bookings.Booking;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
+
+import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "Cars")
@@ -24,7 +27,7 @@ public class Car {
     @NotNull
     private Date createDate;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = {CascadeType.MERGE}, orphanRemoval = true)
     @JoinTable(
             name="CarAssignedFeatures",
             joinColumns = @JoinColumn( name = "CarId"),
@@ -32,11 +35,11 @@ public class Car {
     )
     private Set<CarFeature> carFeatures;
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true, cascade = {PERSIST, MERGE, REMOVE})
     @JoinColumn(name = "CarId")
     private Set<CarLocationHistory> carLocationHistories;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinColumn(name = "CarId")
     private Set<Booking> carBookings;
 
@@ -86,5 +89,19 @@ public class Car {
 
     public void setCarBookings(Set<Booking> carBookings) {
         this.carBookings = carBookings;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Car) {
+            return ((Car)o).id == this.id;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return new Long(this.id).hashCode();
     }
 }
