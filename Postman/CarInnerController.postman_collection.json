@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "422573fa-027f-4fa2-a48a-5445507039c4",
+		"name": "CarInnerController",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetEngines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/engines",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"engines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carModels",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/carModels",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"carModels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carCompanies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/carCompanies",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"carCompanies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "luxuries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/luxuryCategories",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"luxuryCategories"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

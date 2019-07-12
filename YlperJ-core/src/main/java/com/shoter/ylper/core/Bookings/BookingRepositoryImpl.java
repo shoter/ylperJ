@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import org.locationtech.jts.geom.Point;
 
 import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
 import java.util.Date;
 import java.util.List;
@@ -63,32 +64,42 @@ public class BookingRepositoryImpl extends RepositoryBase<Booking> implements Bo
     }
 
 
-    public List<FindCarResult> findProperCar(Date startTime, Date endTime, Integer carLuxuryCategoryId, List<Integer> carFeatureIds, Point searchLocation) {
+    public List<FindCarResult> findProperCar(Date startTime, Date endTime, byte carLuxuryCategoryId, List<Integer> carFeatureIds, Point searchLocation) {
         EntityManager em = session.getEntityManagerFactory().createEntityManager();
 
         StoredProcedureQuery query = em.
-                createNamedStoredProcedureQuery("Find_Car_For_Booking");
+                createStoredProcedureQuery("Find_Car_For_Booking")
+                .registerStoredProcedureParameter(1, Date.class, ParameterMode.IN)
+                .registerStoredProcedureParameter(2, Date.class, ParameterMode.IN)
+                .registerStoredProcedureParameter(3, Byte.class, ParameterMode.IN)
+                .registerStoredProcedureParameter(4, String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter(5, Point.class, ParameterMode.IN);
 
         StringBuilder featureSB = new StringBuilder();
 
-        for(int i = 0;i < carFeatureIds.size();)
-        {
-            featureSB.append('(');
-            featureSB.append(carFeatureIds.get(i));
-            featureSB.append(')');
-            ++i;
-            if(i != carFeatureIds.size())
-                featureSB.append(',');
+        if(carFeatureIds != null && carFeatureIds.isEmpty() == false) {
+
+
+            for (int i = 0; i < carFeatureIds.size(); ) {
+                featureSB.append('(');
+                featureSB.append(carFeatureIds.get(i));
+                featureSB.append(')');
+                ++i;
+                if (i != carFeatureIds.size())
+                    featureSB.append(',');
+            }
         }
 
-        query.setParameter("p_start_time", startTime);
-        query.setParameter("p_end_time", endTime);
-        query.setParameter("p_luxury_category_id", carLuxuryCategoryId);
+        query.setParameter(1, startTime);
+        query.setParameter(2, endTime);
+        query.setParameter(3, carLuxuryCategoryId);
 
-        if(carFeatureIds.isEmpty() == false)
-            query.setParameter("p_car_features", featureSB.toString());
+        if(carFeatureIds != null && carFeatureIds.isEmpty() == false)
+            query.setParameter(4, featureSB.toString());
+        else
+            query.setParameter(4, "");
 
-        query.setParameter("p_point", searchLocation);
+        query.setParameter(5, searchLocation);
 
         return (List<FindCarResult>) query.getResultList();
     }

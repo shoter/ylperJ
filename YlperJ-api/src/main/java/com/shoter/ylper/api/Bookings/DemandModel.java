@@ -1,16 +1,18 @@
 package com.shoter.ylper.api.Bookings;
 
 import com.shoter.ylper.api.Cars.CarFeatureModel;
+import com.shoter.ylper.api.Common.Model;
 import com.shoter.ylper.core.Cars.CarFeature;
 import com.shoter.ylper.core.Demands.Demand;
 
 import javax.validation.constraints.NotNull;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-public class DemandModel {
+public class DemandModel extends Model {
     long id;
     @NotNull
     private long userId;
@@ -19,13 +21,13 @@ public class DemandModel {
     @NotNull
     private double desiredPickupLocationY;
     @NotNull
-    private Date desiredStartTime;
+    private String desiredStartTime;
     @NotNull
     private double desiredDropLocationX;
     @NotNull
     private double desiredDropLocationY;
     @NotNull
-    private Date desiredEndDate;
+    private String desiredEndDate;
     private List<CarFeatureModel> desiredCarFeatures;
 
     public DemandModel()
@@ -39,10 +41,10 @@ public class DemandModel {
         userId = demand.getUser().getId();
         desiredPickupLocationX = demand.getDesiredPickupLocation().getX();
         desiredPickupLocationY = demand.getDesiredPickupLocation().getY();
-        desiredStartTime = demand.getDesiredStartDateTime();
+        desiredStartTime = dateFormat.format(demand.getDesiredStartDateTime());
         desiredDropLocationX = demand.getDesiredDropLocation().getX();
         desiredDropLocationY = demand.getDesiredDropLocation().getY();
-        desiredEndDate = demand.getDesiredDropDateTime();
+        desiredEndDate = dateFormat.format(demand.getDesiredDropDateTime());
 
         if(demand.getDesiredCarFeatures() != null)
         {
@@ -86,14 +88,6 @@ public class DemandModel {
         this.desiredPickupLocationY = desiredPickupLocationY;
     }
 
-    public Date getDesiredStartTime() {
-        return desiredStartTime;
-    }
-
-    public void setDesiredStartTime(Date desiredStartTime) {
-        this.desiredStartTime = desiredStartTime;
-    }
-
     public double getDesiredDropLocationX() {
         return desiredDropLocationX;
     }
@@ -110,19 +104,35 @@ public class DemandModel {
         this.desiredDropLocationY = desiredDropLocationY;
     }
 
-    public Date getDesiredEndDate() {
-        return desiredEndDate;
-    }
-
-    public void setDesiredEndDate(Date desiredEndDate) {
-        this.desiredEndDate = desiredEndDate;
-    }
-
     public List<CarFeatureModel> getDesiredCarFeatures() {
         return desiredCarFeatures;
     }
 
     public void setDesiredCarFeatures(List<CarFeatureModel> desiredCarFeatures) {
         this.desiredCarFeatures = desiredCarFeatures;
+    }
+
+    public String getDesiredStartTime() {
+        return desiredStartTime;
+    }
+
+    public void setDesiredStartTime(String desiredStartTime) {
+        this.desiredStartTime = desiredStartTime;
+    }
+
+    public String getDesiredEndDate() {
+        return desiredEndDate;
+    }
+
+    public void setDesiredEndDate(String desiredEndDate) {
+        this.desiredEndDate = desiredEndDate;
+    }
+
+    public Date getParsedEndDate() throws ParseException {
+        return parseTime(desiredEndDate);
+    }
+
+    public Date getParsedStartDate() throws ParseException {
+        return parseTime(desiredStartTime);
     }
 }

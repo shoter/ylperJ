@@ -1,13 +1,15 @@
 package com.shoter.ylper.api.Users.Models;
 
+import com.shoter.ylper.api.Common.Model;
 import com.shoter.ylper.core.Users.User;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.text.ParseException;
 import java.util.Date;
 
-public class UserModel {
+public class UserModel extends Model {
     private long id;
 
     @NotBlank
@@ -17,8 +19,8 @@ public class UserModel {
     @NotBlank
     @Size(max = 200)
     private String name;
-    @NotNull
-    private Date birthday;
+    @NotBlank
+    private String birthday;
     @NotNull
     private Byte gender;
 
@@ -31,7 +33,7 @@ public class UserModel {
         id = user.getId();
         username = user.getUsername();
         name = user.getName();
-        birthday = user.getBirthDay();
+        birthday = dateFormat.format(user.getBirthDay());
         gender = user.getGender().getId();
     }
 
@@ -59,12 +61,20 @@ public class UserModel {
         this.name = name;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public Date getParsedBirthday() throws ParseException {
+        return parseTime(birthday);
+    }
+
+    public void setGender(Byte gender) {
+        this.gender = gender;
     }
 
     public byte getGender() {

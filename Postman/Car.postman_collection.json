@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "1bef33c7-463a-4de7-8771-696211cedb9d",
+		"name": "Car",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetCars",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/cars",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/cars/1",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"cars",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCar with no features",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"carModelId\": 5,\n\t\"x\" : 2,\n\t\"y\" : 4\n}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/cars",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCar withfeatures",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"carModelId\": 5,\n\t\"x\" : 2,\n\t\"y\" : 4,\n\t\"carFeaturesIds\": [ 1,2,3 ]\n}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/cars",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InsertCarLocation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"x\" : 3,\n\t\"y\" : 10\n}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/cars/1/locations",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"cars",
+						"1",
+						"locations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete car",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/cars/10",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"cars",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

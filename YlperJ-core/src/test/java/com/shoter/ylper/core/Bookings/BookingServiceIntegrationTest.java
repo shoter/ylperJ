@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class BookingServiceIntegrationTest extends IntegrationTest {
 
@@ -36,7 +37,7 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
         );
 
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, 2019);
+        cal.set(Calendar.YEAR, 2020);
         cal.set(Calendar.MONTH, 7);
         cal.set(Calendar.DAY_OF_MONTH, 3);
 
@@ -104,7 +105,7 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
         cal.set(Calendar.YEAR, 2019);
         cal.set(Calendar.MONTH, 6);
         cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.set(Calendar.HOUR, 16);
+        cal.set(Calendar.HOUR, 14);
         cal.set(Calendar.MINUTE, 0);
 
         //car Id 1 should have booking at this time
@@ -119,7 +120,7 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
         cal.set(Calendar.YEAR, 2019);
         cal.set(Calendar.MONTH, 6);
         cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.set(Calendar.HOUR, 18);
+        cal.set(Calendar.HOUR, 16);
         cal.set(Calendar.MINUTE, 1);
 
 
@@ -130,7 +131,7 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
     @Test
     public void bookingExistsInGivenTimeForCar_shouldReturnTrue_whenBookingIsInsideDateRange() throws ParseException {
         Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 01:00");
-        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 23:00");
+        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 21:00");
 
         assertTrue(bookingService.bookingExistsInGivenTimeForCar(1, startTime, endTime));
     }
@@ -138,31 +139,31 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
     @Test
     public void bookingExistsInGivenTimeForCar_shouldReturnTrue_whenDateRangeEndIsInsideBooking() throws ParseException {
         Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 01:00");
-        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 15:00");
+        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 13:00");
 
         assertTrue(bookingService.bookingExistsInGivenTimeForCar(1, startTime, endTime));
     }
 
     @Test
     public void bookingExistsInGivenTimeForCar_shouldReturnTrue_whenDateRangeStartIsInsideBooking() throws ParseException {
-        Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 16:00");
-        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 18:00");
+        Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 14:00");
+        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 16:00");
 
         assertTrue(bookingService.bookingExistsInGivenTimeForCar(1, startTime, endTime));
     }
 
     @Test
     public void bookingExistsInGivenTimeForCar_shouldReturnFalse_whenDateRangeIsNotCollidingWithBooking() throws ParseException {
-        Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 18:00");
-        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 20:00");
+        Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 16:00");
+        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 18:00");
 
         assertFalse(bookingService.bookingExistsInGivenTimeForCar(1, startTime, endTime));
     }
 
     @Test
     public void canAdd_shouldReturnError_whenTimeIsAlreadyBooked() throws ParseException {
-        Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 16:00");
-        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 18:00");
+        Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 14:00");
+        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 16:00");
 
         this.correctBooking.setStartDateTime(startTime);
         this.correctBooking.setEndDateTime(endTime);
@@ -171,13 +172,17 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
         assertTrue(bookingService.canAdd(this.correctBooking).hasError(BookingErrors.carIsAlreadyBookedInThisTime));
     }
 
- /*   @Test
-    public void findProperCar_shouldReturn3Cars_forSpecificSetting() throws ParseException {
+    @Test
+    public void findProperCar_shouldReturn2Cars_forSpecificSetting() throws ParseException {
         // I do not like this method personally. It should create booking data inside so person that is trying to understand method
 
-        Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 18:20");
-        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 ");
+        Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 16:20");
+        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 16:30");
 
+        List<FindCarResult> result =                 bookingService.findProperCar(startTime, endTime, (byte)2, null,
+                geometryFactory.createPoint(new Coordinate(1,3)));
 
-    }*/
+        assertEquals(2, result.size());
+
+    }
 }

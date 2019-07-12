@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "c6831292-2e88-4927-a9a1-3817abdc4ebd",
+		"name": "Demand",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getDemand",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/demands/2",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"demands",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createDemand no features",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\" : 1,\n\t\"desiredPickupLocationX\" : 2,\n\t\"desiredPickupLocationY\" : 4,\n\t\"desiredStartTime\": \"1564041294\",\n\t\"desiredDropLocationX\" : 3,\n\t\"desiredDropLocationY\" : 4,\n\t\"desiredEndDate\" : \"1564052094\"\n}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/demands",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"demands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createDemand with features",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\" : 1,\n\t\"desiredPickupLocationX\" : 2,\n\t\"desiredPickupLocationY\" : 4,\n\t\"desiredStartTime\": \"1564041294\",\n\t\"desiredDropLocationX\" : 3,\n\t\"desiredDropLocationY\" : 4,\n\t\"desiredEndDate\" : \"1564052094\",\n\t\"desiredCarFeatures\": [\n\t\t{\"id\" : 2},\n\t\t{\"id\" : 4}]\n}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/demands",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"demands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteDemand",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/demands/1",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"demands",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

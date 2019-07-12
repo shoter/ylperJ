@@ -1,15 +1,17 @@
 package com.shoter.ylper.api.Bookings;
 
+import com.shoter.ylper.api.Common.Model;
 import com.shoter.ylper.core.Bookings.Booking;
 
+import java.text.ParseException;
 import java.util.Date;
 
-public class BookingModel {
+public class BookingModel extends Model {
     private long id;
     private long userId;
     private long carId;
-    private Date startDateTime;
-    private Date endDateTime;
+    private String startDateTime;
+    private String endDateTime;
     private double startPositionX;
     private double startPositionY;
     private double endPositionX;
@@ -25,8 +27,8 @@ public class BookingModel {
         id = booking.getId();
         userId = booking.getUser().getId();
         carId = booking.getCar().getId();
-        startDateTime = booking.getStartDateTime();
-        endDateTime = booking.getEndDateTime();
+        startDateTime = dateFormat.format(booking.getStartDateTime());
+        endDateTime = dateFormat.format(booking.getEndDateTime());
         startPositionX = booking.getPickupPosition().getX();
         startPositionY = booking.getPickupPosition().getY();
         endPositionX = booking.getDropPosition().getX();
@@ -58,20 +60,28 @@ public class BookingModel {
         this.carId = carId;
     }
 
-    public Date getStartDateTime() {
+    public String getStartDateTime() {
         return startDateTime;
     }
 
-    public void setStartDateTime(Date startDateTime) {
+    public void setStartDateTime(String startDateTime) {
         this.startDateTime = startDateTime;
     }
 
-    public Date getEndDateTime() {
+    public String getEndDateTime() {
         return endDateTime;
     }
 
-    public void setEndDateTime(Date endDateTime) {
+    public void setEndDateTime(String endDateTime) {
         this.endDateTime = endDateTime;
+    }
+
+    public Date getParsedEndDate() throws ParseException {
+        return parseTime(endDateTime);
+    }
+
+    public Date getParsedStartDate() throws ParseException {
+        return parseTime(startDateTime);
     }
 
     public double getStartPositionX() {

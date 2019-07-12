@@ -46,6 +46,8 @@
         <mapping class="com.shoter.ylper.core.Cars.CarLocationHistory" />
 
 
+
+
     </session-factory>
 
 </hibernate-configuration>

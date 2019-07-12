@@ -118,7 +118,7 @@ public class BookingServiceImpl extends ServiceBase<Booking> implements BookingS
         return bookingRepository.bookingExistsInGivenTime(carId, startTime, endTime);
     }
 
-    public List<FindCarResult> findProperCar(Date startTime, Date endTime, int carLuxuryCategoryId, List<Integer> carFeatureIds, Point searchLocation) {
+    public List<FindCarResult> findProperCar(Date startTime, Date endTime, byte carLuxuryCategoryId, List<Integer> carFeatureIds, Point searchLocation) {
         return bookingRepository.findProperCar(startTime, endTime, carLuxuryCategoryId, carFeatureIds, searchLocation);
     }
 }

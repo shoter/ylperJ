@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.awt.print.Book;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -38,12 +39,11 @@ public class EntityFactory {
 
     // it will be easier to understand what entity class we want to create by specifying class of the class that we want to create.
     // It shoud also offer better code-completion experience.
-    public User create(Class<User> userClass, UserModel model)
-    {
+    public User create(Class<User> userClass, UserModel model) throws ParseException {
         Gender gender = session.load(Gender.class, model.getGender());
 
         User user = new User();
-        user.setBirthDay(model.getBirthday());
+        user.setBirthDay(model.getParsedBirthday());
         user.setName(model.getName());
         user.setUsername(model.getUsername());
         user.setId(model.getId());
@@ -70,12 +70,11 @@ public class EntityFactory {
         return car;
     }
 
-    public Demand create(Class<Demand> demandClass, DemandModel model)
-    {
+    public Demand create(Class<Demand> demandClass, DemandModel model) throws ParseException {
         Demand demand = new Demand();
         demand.setUser(session.load(User.class, model.getUserId()));
-        demand.setDesiredDropDateTime(model.getDesiredEndDate());
-        demand.setDesiredStartDateTime(model.getDesiredStartTime());
+        demand.setDesiredDropDateTime(model.getParsedEndDate());
+        demand.setDesiredStartDateTime(model.getParsedStartDate());
         demand.setDesiredPickupLocation(geometryFactory.createPoint(new Coordinate(model.getDesiredPickupLocationX(), model.getDesiredPickupLocationY())));
         demand.setDesiredDropLocation(geometryFactory.createPoint(new Coordinate(model.getDesiredDropLocationX(), model.getDesiredDropLocationY())));
 
@@ -91,15 +90,14 @@ public class EntityFactory {
         return demand;
     }
 
-    public Booking create(Class<Booking> bookingClass, BookingModel model)
-    {
+    public Booking create(Class<Booking> bookingClass, BookingModel model) throws ParseException {
         Booking booking = new Booking();
         booking.setPickupPosition(geometryFactory.createPoint(new Coordinate(model.getStartPositionX(), model.getStartPositionY())));
         booking.setDropPosition(geometryFactory.createPoint(new Coordinate(model.getEndPositionX(), model.getEndPositionY())));
         booking.setUser(session.load(User.class, model.getUserId()));
         booking.setCar(session.load(Car.class, model.getCarId()));
-        booking.setStartDateTime(model.getStartDateTime());
-        booking.setEndDateTime(model.getEndDateTime());
+        booking.setStartDateTime(model.getParsedStartDate());
+        booking.setEndDateTime(model.getParsedEndDate());
 
         return booking;
     }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -100,8 +101,7 @@ public class UserController extends ControllerBase {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public @ResponseBody ResponseEntity createUser(@RequestBody UserModel userModel)
-    {
+    public @ResponseBody ResponseEntity createUser(@RequestBody UserModel userModel) throws ParseException {
         Set<ConstraintViolation<UserModel>> violations = validator.validate(userModel);
         if(violations.isEmpty() == false)
         {

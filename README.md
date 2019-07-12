@@ -51,7 +51,7 @@ Request Body:
 ```
     username | NotBlank + max 50 chars - unique among users
     name | NotBlank + max 200 chars
-    birthday | Not Null - java timestamp
+    birthday | Not Null String "yyyy-MM-dd HH-mm"
     gender | Not Null - gender id (1 - m, 2 - f, 3- other)
 ```
 
@@ -109,7 +109,69 @@ Removed car id if constraints will be met. Car cannot have any bookings or deman
 
 ### /bookings
 
+#### Post /
+
+Request Body
+```
+    startPositionX | not null double
+    startPositionY | Not null double
+    startDateTime | Not null String "yyyy-MM-dd HH-mm"
+    endPositionX | Not null double
+    endPositionY | Not null double
+    endDateTime | Not null String "yyyy-MM-dd HH-mm"
+    userId : Not null Long
+    carId : Not null Long
+
+```
+
+Creates new booking
+
+#### Post /find
+
+```
+    searchX | not null double
+    searchY | Not null double
+    startTime | Not null String "yyyy-MM-dd HH-mm"
+    endTime | Not null String "yyyy-MM-dd HH-mm"
+    carFeatureIds | Int[]
+
+```
+
+Searches for cars that match given criteria to start a booking
+
 ### /demands
+
+#### GET /[integer]
+
+[integer] - demand id
+
+return information about given demand
+
+#### POST /
+
+Request body
+```
+    desiredPickupLocationX | not null double
+    desiredPickupLocationY | Not null double
+    desiredStartTime | Not null String "yyyy-MM-dd HH-mm"
+    desiredDropLocationX | Not null double
+    desiredDropLocationY | Not null double
+    desiredEndDate | Not null String "yyyy-MM-dd HH-mm"
+    userId : Not null Long
+    desiredCarFeatures | CarFeatureId[]
+        Id | int
+
+```
+
+Creates new demand
+
+
+#### Delete /[integer]
+
+[integer] - demand id
+
+Removes demand
+
 
 ### GET /Engines
 
