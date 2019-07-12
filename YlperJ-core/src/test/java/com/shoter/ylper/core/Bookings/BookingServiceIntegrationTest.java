@@ -169,6 +169,15 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
         this.correctBooking.setCar(session.load(Car.class,(long)1));
 
         assertTrue(bookingService.canAdd(this.correctBooking).hasError(BookingErrors.carIsAlreadyBookedInThisTime));
-
     }
+
+ /*   @Test
+    public void findProperCar_shouldReturn3Cars_forSpecificSetting() throws ParseException {
+        // I do not like this method personally. It should create booking data inside so person that is trying to understand method
+
+        Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 18:20");
+        Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 ");
+
+
+    }*/
 }

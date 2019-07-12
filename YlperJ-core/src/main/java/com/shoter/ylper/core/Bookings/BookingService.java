@@ -4,6 +4,7 @@ import com.shoter.ylper.core.Results.MethodResult;
 import org.locationtech.jts.geom.Point;
 
 import java.util.Date;
+import java.util.List;
 
 public interface BookingService {
     MethodResult canAdd(Booking booking);
@@ -18,4 +19,6 @@ public interface BookingService {
 
     boolean bookingExistsInGivenTimeForCar(long carId, Date time);
     boolean bookingExistsInGivenTimeForCar(long carId, Date startTime, Date endTime);
+
+    List<FindCarResult> findProperCar(Date startTime, Date endTime, int carLuxuryCategoryId, List<Integer> carFeatureIds, Point searchLocation);
 }

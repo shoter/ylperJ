@@ -62,16 +62,34 @@ public class BookingRepositoryImpl extends RepositoryBase<Booking> implements Bo
         return query.uniqueResult() != null;
     }
 
-    public List<FindCarResult> findProperCar(Date startTime, Date endTime, int carLuxuryCategoryId, List<Integer> carFeatureIds, Point searchLocation) {
+
+    public List<FindCarResult> findProperCar(Date startTime, Date endTime, Integer carLuxuryCategoryId, List<Integer> carFeatureIds, Point searchLocation) {
         EntityManager em = session.getEntityManagerFactory().createEntityManager();
 
-        StoredProcedureQuery spQuery = em.
-                createNamedStoredProcedureQuery("GetFoosByName")
-                .registerStoredProcedureParameter(
-                        "New Foo",
-                        String.class ,
-                        ParameterMode.IN
-                );
-        return null;
+        StoredProcedureQuery query = em.
+                createNamedStoredProcedureQuery("Find_Car_For_Booking");
+
+        StringBuilder featureSB = new StringBuilder();
+
+        for(int i = 0;i < carFeatureIds.size();)
+        {
+            featureSB.append('(');
+            featureSB.append(carFeatureIds.get(i));
+            featureSB.append(')');
+            ++i;
+            if(i != carFeatureIds.size())
+                featureSB.append(',');
+        }
+
+        query.setParameter("p_start_time", startTime);
+        query.setParameter("p_end_time", endTime);
+        query.setParameter("p_luxury_category_id", carLuxuryCategoryId);
+
+        if(carFeatureIds.isEmpty() == false)
+            query.setParameter("p_car_features", featureSB.toString());
+
+        query.setParameter("p_point", searchLocation);
+
+        return (List<FindCarResult>) query.getResultList();
     }
 }

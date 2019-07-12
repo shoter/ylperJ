@@ -8,6 +8,7 @@ import com.shoter.ylper.core.Users.UserRepository;
 import org.locationtech.jts.geom.Point;
 
 import java.util.Date;
+import java.util.List;
 
 public class BookingServiceImpl extends ServiceBase<Booking> implements BookingService {
 
@@ -115,5 +116,9 @@ public class BookingServiceImpl extends ServiceBase<Booking> implements BookingS
 
     public boolean bookingExistsInGivenTimeForCar(long carId, Date startTime, Date endTime) {
         return bookingRepository.bookingExistsInGivenTime(carId, startTime, endTime);
+    }
+
+    public List<FindCarResult> findProperCar(Date startTime, Date endTime, int carLuxuryCategoryId, List<Integer> carFeatureIds, Point searchLocation) {
+        return bookingRepository.findProperCar(startTime, endTime, carLuxuryCategoryId, carFeatureIds, searchLocation);
     }
 }

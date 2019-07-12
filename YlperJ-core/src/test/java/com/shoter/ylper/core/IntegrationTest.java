@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.PrecisionModel;
 
+import java.util.TimeZone;
+
 public class IntegrationTest extends YlperTest {
     protected SessionFactory sessionFactory;
     protected Session session;
@@ -32,6 +34,8 @@ public class IntegrationTest extends YlperTest {
             // so destroy it manually.
             StandardServiceRegistryBuilder.destroy(registry);
         }
+
+        TimeZone.setDefault(TimeZone.getTimeZone("Etc/UTC"));
     }
 
     @AfterEach
