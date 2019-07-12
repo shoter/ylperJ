@@ -1,10 +1,11 @@
 package com.shoter.ylper.api.Cars;
 
+import com.shoter.ylper.api.Common.Model;
 import com.shoter.ylper.core.Cars.CarLocationHistory;
 
 import java.util.Date;
 
-public class CarLocationModel {
+public class CarLocationModel extends Model {
     Date dateTime;
 
     double x;
@@ -23,8 +24,8 @@ public class CarLocationModel {
         y = location.getLocation().getY();
     }
 
-    public Date getDateTime() {
-        return dateTime;
+    public String getDateTime() {
+        return dateFormat.format(dateTime);
     }
 
     public void setDateTime(Date dateTime) {

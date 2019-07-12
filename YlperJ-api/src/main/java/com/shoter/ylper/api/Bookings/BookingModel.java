@@ -3,18 +3,31 @@ package com.shoter.ylper.api.Bookings;
 import com.shoter.ylper.api.Common.Model;
 import com.shoter.ylper.core.Bookings.Booking;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.text.ParseException;
 import java.util.Date;
 
 public class BookingModel extends Model {
     private long id;
+    @NotNull
     private long userId;
+    @NotNull
     private long carId;
+    @NotBlank
+    @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}")
     private String startDateTime;
+    @NotBlank
+    @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}")
     private String endDateTime;
+    @NotNull
     private double startPositionX;
+    @NotNull
     private double startPositionY;
+    @NotNull
     private double endPositionX;
+    @NotNull
     private double endPositionY;
 
     public BookingModel()

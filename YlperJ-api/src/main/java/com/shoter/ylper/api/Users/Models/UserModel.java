@@ -5,6 +5,7 @@ import com.shoter.ylper.core.Users.User;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +22,7 @@ public class UserModel extends Model {
     @Size(max = 200)
     private String name;
     @NotBlank
+    @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}")
     private String birthday;
     @NotNull
     private Byte gender;

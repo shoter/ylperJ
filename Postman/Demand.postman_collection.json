@@ -39,7 +39,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"userId\" : 1,\n\t\"desiredPickupLocationX\" : 2,\n\t\"desiredPickupLocationY\" : 4,\n\t\"desiredStartTime\": \"1564041294\",\n\t\"desiredDropLocationX\" : 3,\n\t\"desiredDropLocationY\" : 4,\n\t\"desiredEndDate\" : \"1564052094\"\n}"
+					"raw": "{\n\t\"userId\" : 1,\n\t\"desiredPickupLocationX\" : 2,\n\t\"desiredPickupLocationY\" : 4,\n\t\"desiredStartTime\": \"2019-07-01 18:35\",\n\t\"desiredDropLocationX\" : 3,\n\t\"desiredDropLocationY\" : 4,\n\t\"desiredEndDate\" : \"2019-07-01 21:35\"\n}"
 				},
 				"url": {
 					"raw": "{{ip}}:{{port}}/{{path}}/demands",
@@ -69,7 +69,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"userId\" : 1,\n\t\"desiredPickupLocationX\" : 2,\n\t\"desiredPickupLocationY\" : 4,\n\t\"desiredStartTime\": \"1564041294\",\n\t\"desiredDropLocationX\" : 3,\n\t\"desiredDropLocationY\" : 4,\n\t\"desiredEndDate\" : \"1564052094\",\n\t\"desiredCarFeatures\": [\n\t\t{\"id\" : 2},\n\t\t{\"id\" : 4}]\n}"
+					"raw": "{\n\t\"userId\" : 1,\n\t\"desiredPickupLocationX\" : 2,\n\t\"desiredPickupLocationY\" : 4,\n\t\"desiredStartTime\": \"2019-07-01 18:35\",\n\t\"desiredDropLocationX\" : 3,\n\t\"desiredDropLocationY\" : 4,\n\t\"desiredEndDate\" : \"2019-07-02 12:35\",\n\t\"desiredCarFeatures\": [\n\t\t{\"id\" : 2},\n\t\t{\"id\" : 4}]\n}"
 				},
 				"url": {
 					"raw": "{{ip}}:{{port}}/{{path}}/demands",

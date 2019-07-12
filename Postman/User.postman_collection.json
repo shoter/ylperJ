@@ -80,7 +80,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Jan Motyka\",\n\t\"username\": \"jmot2\",\n\t\"gender\": 1,\n\t\"birthday\": 634089600000\n}"
+					"raw": "{\n\t\"name\": \"Jan Motyka\",\n\t\"username\": \"jmot\",\n\t\"gender\": 1,\n\t\"birthday\": \"2000-02-03\"\n}"
 				},
 				"url": {
 					"raw": "{{ip}}:{{port}}/{{path}}/users",

@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "d2a9af2c-ede5-456b-be09-f4413880749d",
+		"name": "Booking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Conflicting booking",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"carId\": 1,\n\t\"userId\": 1,\n\t\"startDateTime\": \"2019-07-01 14:35\",\n\t\"endDateTime\" : \"2019-07-01 16:15\",\n\t\"startPositionX\" : 2,\n\t\"startPositionY\" : 3,\n\t\"endPositionX\" : 3,\n\t\"endPositionY\" : 2\n\t\n}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/bookings",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"bookings"
+					]
+				},
+				"description": "This booking will be not created. It overlaps with another booking\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Create booking - works 1 time",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"carId\": 1,\n\t\"userId\": 1,\n\t\"startDateTime\": \"2019-07-02 14:35\",\n\t\"endDateTime\" : \"2019-07-02 16:15\",\n\t\"startPositionX\" : 2,\n\t\"startPositionY\" : 3,\n\t\"endPositionX\" : 3,\n\t\"endPositionY\" : 2\n\t\n}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/bookings",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"bookings"
+					]
+				},
+				"description": "It will not work second time - you cannot create overlapping bookings"
+			},
+			"response": []
+		},
+		{
+			"name": "Find Car for booking",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"startTime\" : \"2019-07-01 18:20\",\n\t\"endTime\" : \"2019-07-01 18:35\",\n\t\"luxuryCategoryId\": 2,\n\t\"searchX\" : 1,\n\t\"searchY\" : 3\n}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/bookings/find",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"bookings",
+						"find"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
