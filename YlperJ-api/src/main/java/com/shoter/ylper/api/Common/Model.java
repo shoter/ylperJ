@@ -11,7 +11,7 @@ public class Model {
 
     public Model()
     {
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm");
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     }
 
     public Date parseTime(String time) throws ParseException {
