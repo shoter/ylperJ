@@ -4,7 +4,10 @@ import com.shoter.ylper.core.Demands.Demand;
 import com.shoter.ylper.core.RepositoryBase;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.locationtech.jts.geom.Point;
 
+import javax.persistence.EntityManager;
+import javax.persistence.StoredProcedureQuery;
 import java.util.Date;
 import java.util.List;
 
@@ -57,5 +60,18 @@ public class BookingRepositoryImpl extends RepositoryBase<Booking> implements Bo
         query.setMaxResults(1);
 
         return query.uniqueResult() != null;
+    }
+
+    public List<FindCarResult> findProperCar(Date startTime, Date endTime, int carLuxuryCategoryId, List<Integer> carFeatureIds, Point searchLocation) {
+        EntityManager em = session.getEntityManagerFactory().createEntityManager();
+
+        StoredProcedureQuery spQuery = em.
+                createNamedStoredProcedureQuery("GetFoosByName")
+                .registerStoredProcedureParameter(
+                        "New Foo",
+                        String.class ,
+                        ParameterMode.IN
+                );
+        return null;
     }
 }

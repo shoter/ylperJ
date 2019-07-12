@@ -29,7 +29,7 @@ OR @feature_count = 0)
 AND car.Id NOT IN (select CarId from Bookings
 where (p_start_time BETWEEN StartDateTime AND EndDateTime) OR (p_end_time BETWEEN StartDateTime AND EndDateTime))
 # Finds if we have good luxury category
-AND luxury.Id = p_luxury_category;
+AND (luxury.Id = p_luxury_category OR p_luxury_category IS NULL);
 
 
 END //
