@@ -19,6 +19,13 @@ It will:
 * (not done - I wanted to do that) Run acceptance test against running api container - probably I would use Python or Java to do that.
 * You can use my requests collections from Postman to test requests against API. They are in ./postman
 
+I do not know if collections are holding environment variables so here they are:
+
+* port - 11080
+* ip - 127.0.0.1
+* path - ylper
+
+
 ## Api documentation
 
 ### /users
@@ -244,6 +251,18 @@ That's why i create Ylper-core project which is front-end independent library fo
 It added some more difficulty for me as I never used maven and multi modules projects but this is better design choice.
 
 ### User can book several cars in given time frame but given car cannot be booked several times in same time frame (as per spec.)
+
+### Double validation
+
+First validation occurs on Api level to check if model is ok.
+Second validation occurs on Core level to check if entity is ok.
+
+Why? To know if model is good enough to be converted into entity which is used inside core.
+
+### Models instead of entities as request params
+
+It's obvious but using entities as models is very bad. Not even they have double responsibility
+but also as they can have lazy fetching etc then it can trigger some good amount of SQL calls. 
 
 ## Challenges
 
