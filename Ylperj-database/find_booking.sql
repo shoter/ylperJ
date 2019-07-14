@@ -3,7 +3,7 @@ DELIMITER //
 CREATE PROCEDURE Find_Car_For_Booking(
 IN p_start_time DATETIME,
 IN p_end_time DATETIME,
-IN p_luxury_category_id INT,
+IN p_luxury_category_id TINYINT,
 IN p_car_features VARCHAR(2000),
 IN p_point POINT
 )

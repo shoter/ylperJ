@@ -47,43 +47,39 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
         correctBooking.setStartDateTime(cal.getTime());
         cal.set(Calendar.DAY_OF_MONTH, 4);
         correctBooking.setEndDateTime(cal.getTime());
-        correctBooking.setPickupPosition(geometryFactory.createPoint(new Coordinate(1,1)));
-        correctBooking.setDropPosition(geometryFactory.createPoint(new Coordinate(1,1)));
+        correctBooking.setPickupPosition(geometryFactory.createPoint(new Coordinate(1, 1)));
+        correctBooking.setDropPosition(geometryFactory.createPoint(new Coordinate(1, 1)));
     }
 
     @Test
-    public void add_shouldAdd_correctBooking()
-    {
+    public void add_shouldAddandRemove_correctBooking() {
         // smoke test
         bookingService.add(correctBooking);
+        bookingService.remove(correctBooking.getId());
     }
 
     @Test
-    public void canAdd_shouldReturnSuccess_forCorrectBooking()
-    {
+    public void canAdd_shouldReturnSuccess_forCorrectBooking() {
         MethodResult result = bookingService.canAdd(correctBooking);
         assertTrue(result.isSuccess());
     }
 
     @Test
-    public void canAdd_shouldReturnFailure_whenUserNotExist()
-    {
-        correctBooking.setUser(session.load(User.class, (long)-12345));
+    public void canAdd_shouldReturnFailure_whenUserNotExist() {
+        correctBooking.setUser(session.load(User.class, (long) -12345));
         MethodResult result = bookingService.canAdd(correctBooking);
         assertTrue(result.hasError(BookingErrors.userNotExist));
     }
 
     @Test
-    public void canAdd_shouldReturnFailure_whenCarNotExist()
-    {
-        correctBooking.setCar(session.load(Car.class, (long)-12345));
+    public void canAdd_shouldReturnFailure_whenCarNotExist() {
+        correctBooking.setCar(session.load(Car.class, (long) -12345));
         MethodResult result = bookingService.canAdd(correctBooking);
         assertTrue(result.hasError(BookingErrors.carNotExist));
     }
 
     @Test
-    public void canAdd_shouldReturnFailure_whenEndTimeBeforeStartTime()
-    {
+    public void canAdd_shouldReturnFailure_whenEndTimeBeforeStartTime() {
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, 1999);
         correctBooking.setEndDateTime(cal.getTime());
@@ -92,40 +88,26 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
     }
 
     @Test
-    public void canUpdateDropInfo_shouldReturnFailure_whenBookingDoesNotExist()
-    {
-        MethodResult result = bookingService.canUpdateDropInfo(-123, new Date(), geometryFactory.createPoint(new Coordinate(1,1)));
+    public void canUpdateDropInfo_shouldReturnFailure_whenBookingDoesNotExist() {
+        MethodResult result = bookingService.canUpdateDropInfo(-123, new Date(), geometryFactory.createPoint(new Coordinate(1, 1)));
         assertTrue(result.hasError(BookingErrors.bookingNotExist));
     }
 
     @Test
-    public void bookingExistsInGivenTimeForCar_shouldReturnTrue_whenBookingExist()
-    {
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, 2019);
-        cal.set(Calendar.MONTH, 6);
-        cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.set(Calendar.HOUR, 14);
-        cal.set(Calendar.MINUTE, 0);
+    public void bookingExistsInGivenTimeForCar_shouldReturnTrue_whenBookingExist() throws ParseException {
+        Date time = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 14:00");
 
         //car Id 1 should have booking at this time
 
-        assertTrue(bookingService.bookingExistsInGivenTimeForCar(1, cal.getTime()));
+        assertTrue(bookingService.bookingExistsInGivenTimeForCar(1, time));
     }
 
     @Test
-    public void bookingExistsInGivenTimeForCar_shouldReturnFalse_whenNoBookingExist()
-    {
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, 2019);
-        cal.set(Calendar.MONTH, 6);
-        cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.set(Calendar.HOUR, 16);
-        cal.set(Calendar.MINUTE, 1);
-
+    public void bookingExistsInGivenTimeForCar_shouldReturnFalse_whenNoBookingExist() throws ParseException {
+        Date time = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 16:00");
 
         // no bookings for car 1
-        assertFalse(bookingService.bookingExistsInGivenTimeForCar(1, cal.getTime()));
+        assertFalse(bookingService.bookingExistsInGivenTimeForCar(1, time));
     }
 
     @Test
@@ -167,7 +149,7 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
 
         this.correctBooking.setStartDateTime(startTime);
         this.correctBooking.setEndDateTime(endTime);
-        this.correctBooking.setCar(session.load(Car.class,(long)1));
+        this.correctBooking.setCar(session.load(Car.class, (long) 1));
 
         assertTrue(bookingService.canAdd(this.correctBooking).hasError(BookingErrors.carIsAlreadyBookedInThisTime));
     }
@@ -179,10 +161,9 @@ public class BookingServiceIntegrationTest extends IntegrationTest {
         Date startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 16:20");
         Date endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2019-07-01 16:30");
 
-        List<FindCarResult> result =                 bookingService.findProperCar(startTime, endTime, (byte)2, null,
-                geometryFactory.createPoint(new Coordinate(1,3)));
+        List<FindCarResult> result = bookingService.findProperCar(startTime, endTime, (byte) 2, null,
+                geometryFactory.createPoint(new Coordinate(1, 3)));
 
         assertEquals(2, result.size());
-
     }
 }

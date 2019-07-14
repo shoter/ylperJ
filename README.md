@@ -262,7 +262,7 @@ Why? To know if model is good enough to be converted into entity which is used i
 ### Models instead of entities as request params
 
 It's obvious but using entities as models is very bad. Not even they have double responsibility
-but also as they can have lazy fetching etc then it can trigger some good amount of SQL calls. 
+but also as they can have lazy fetching etc then it can trigger some good amount of SQL calls.
 
 ## Challenges
 

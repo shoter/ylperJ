@@ -9,6 +9,7 @@ import org.locationtech.jts.geom.Point;
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -67,8 +68,44 @@ public class BookingRepositoryImpl extends RepositoryBase<Booking> implements Bo
     public List<FindCarResult> findProperCar(Date startTime, Date endTime, byte carLuxuryCategoryId, List<Integer> carFeatureIds, Point searchLocation) {
         EntityManager em = session.getEntityManagerFactory().createEntityManager();
 
+        StoredProcedureQuery query = em.createNamedStoredProcedureQuery("findCar");
+
+
+
+        StringBuilder featureSB = new StringBuilder();
+
+        if(carFeatureIds != null && carFeatureIds.isEmpty() == false) {
+
+
+            for (int i = 0; i < carFeatureIds.size(); ) {
+                featureSB.append('(');
+                featureSB.append(carFeatureIds.get(i));
+                featureSB.append(')');
+                ++i;
+                if (i != carFeatureIds.size())
+                    featureSB.append(',');
+            }
+        }
+
+        query.setParameter("p_start_time", startTime);
+        query.setParameter("p_end_time", endTime);
+        query.setParameter("p_luxury_category_id", carLuxuryCategoryId);
+
+        if(carFeatureIds != null && carFeatureIds.isEmpty() == false)
+            query.setParameter("p_car_features", featureSB.toString());
+        else
+            query.setParameter("p_car_features", "");
+
+        query.setParameter("p_point", searchLocation);
+
+        return (List<FindCarResult>) query.getResultList();
+    }
+
+    public List<FindCarResult> ofindProperCar(Date startTime, Date endTime, byte carLuxuryCategoryId, List<Integer> carFeatureIds, Point searchLocation) {
+        EntityManager em = session.getEntityManagerFactory().createEntityManager();
+
         StoredProcedureQuery query = em.
-                createStoredProcedureQuery("Find_Car_For_Booking")
+                createStoredProcedureQuery("Find_Car_For_Booking", FindCarResult.class)
                 .registerStoredProcedureParameter(1, Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter(2, Date.class, ParameterMode.IN)
                 .registerStoredProcedureParameter(3, Byte.class, ParameterMode.IN)
@@ -101,6 +138,13 @@ public class BookingRepositoryImpl extends RepositoryBase<Booking> implements Bo
 
         query.setParameter(5, searchLocation);
 
-        return (List<FindCarResult>) query.getResultList();
+        List<Object> result = query.getResultList();
+
+        List<FindCarResult> retVal = new ArrayList<FindCarResult>();
+
+        for(Object o : result)
+            retVal.add((FindCarResult)o);
+
+        return retVal;
     }
 }

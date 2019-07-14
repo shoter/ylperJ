@@ -28,9 +28,6 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
-        <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">validate</property>
-
         <!-- Names the annotated entity class -->
         <mapping class="com.shoter.ylper.core.Users.Gender"/>
         <mapping class="com.shoter.ylper.core.Users.User"/>
@@ -44,6 +41,7 @@
         <mapping class="com.shoter.ylper.core.Cars.CarFeature" />
         <mapping class="com.shoter.ylper.core.Cars.Car" />
         <mapping class="com.shoter.ylper.core.Cars.CarLocationHistory" />
+        <mapping class="com.shoter.ylper.core.Bookings.FindCarResult"/>
 
 
     </session-factory>
