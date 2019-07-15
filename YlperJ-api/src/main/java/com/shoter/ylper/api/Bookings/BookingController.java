@@ -90,11 +90,7 @@ public class BookingController extends ControllerBase {
         for(FindCarResult r : result)
             ret.add(new FindCarResultModel(r));
 
-        String a = "";
-
-        a += request.getStartTime().toString() + " - " + request.getEndTime().toString();
-
-        return response(200, a);
+        return response(200, ret);
     }
 
 

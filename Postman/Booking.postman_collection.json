@@ -81,7 +81,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"startTime\" : \"2019-07-01 18:20\",\n\t\"endTime\" : \"2019-07-01 18:35\",\n\t\"luxuryCategoryId\": 2,\n\t\"searchX\" : 1,\n\t\"searchY\" : 3\n}"
+					"raw": "{\n\t\"startTime\" : \"2019-07-01 16:20\",\n\t\"endTime\" : \"2019-07-01 16:35\",\n\t\"luxuryCategoryId\": 2,\n\t\"searchX\" : 1,\n\t\"searchY\" : 3\n}"
 				},
 				"url": {
 					"raw": "{{ip}}:{{port}}/{{path}}/bookings/find",
@@ -94,7 +94,72 @@
 						"bookings",
 						"find"
 					]
-				}
+				},
+				"description": "Still not working. I need to fix it."
+			},
+			"response": []
+		},
+		{
+			"name": "Find Car for booking with features",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"startTime\" : \"2019-07-01 16:20\",\n\t\"endTime\" : \"2019-07-01 16:35\",\n\t\"luxuryCategoryId\": 2,\n\t\"searchX\" : 1,\n\t\"searchY\" : 3,\n\t\"carFeatureIds\" : [\n\t\t1,2\n\t\t]\n}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/bookings/find",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"bookings",
+						"find"
+					]
+				},
+				"description": "Still not working. I need to fix it."
+			},
+			"response": []
+		},
+		{
+			"name": "Find Car for booking with features - no car found",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"startTime\" : \"2019-07-01 16:20\",\n\t\"endTime\" : \"2019-07-01 16:35\",\n\t\"luxuryCategoryId\": 2,\n\t\"searchX\" : 1,\n\t\"searchY\" : 3,\n\t\"carFeatureIds\" : [\n\t\t1,2,3,4,5\n\t\t]\n}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{port}}/{{path}}/bookings/find",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{path}}",
+						"bookings",
+						"find"
+					]
+				},
+				"description": "Still not working. I need to fix it."
 			},
 			"response": []
 		}
